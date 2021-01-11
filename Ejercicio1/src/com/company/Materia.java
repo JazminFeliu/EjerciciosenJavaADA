@@ -23,9 +23,9 @@ public class Materia {
 
     public void cargarMatrizMateria(){
         for(int f=0; f<_fila;f++){
-            System.out.println("Notas del alumno número "+f+1);
+            System.out.println("Notas del alumno número "+(f+1));
             for(int c=0; c<_columna; c++){
-                System.out.println("Ingrese nota número "+c+1);
+                System.out.println("Ingrese nota número "+(c+1));
                 materia[f][c] = teclado.nextInt();
             }
         }
