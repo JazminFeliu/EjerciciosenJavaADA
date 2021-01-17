@@ -10,6 +10,7 @@ public class Articulo {
         this.tipo = tipo;
         this.nombre = nombre;
         this.cantidad = cantidad;
+
     }
 
     public String getTipo() {
