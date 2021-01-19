@@ -4,19 +4,23 @@ public class Automovil {
 
     private Integer velocidad;
 
-    public Automovil(){
-        velocidad = 0;
+    public Automovil(int velocidad){
+
+        this.velocidad = velocidad;
     }
 
     public void frenar(){
+
         velocidad--;
     }
 
     public void acelerar(){
+
         velocidad++;
     }
 
     public int getVelocidad(){
+
         return velocidad;
     }
 }

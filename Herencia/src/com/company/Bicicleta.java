@@ -11,4 +11,8 @@ package com.company;
 
 
 public class Bicicleta extends Automovil{
+
+    public Bicicleta(int velocidad) {
+        super(velocidad);
+    }
 }
