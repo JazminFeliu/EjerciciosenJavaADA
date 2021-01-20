@@ -10,8 +10,6 @@ public class Main {
         // felix tiene 4 patas
         felix.setPatas(3);
 
-
-
         Gato gardfield = new Gato();
         gardfield.setPatas(4);
 
