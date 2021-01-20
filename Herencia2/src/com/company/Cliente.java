@@ -1,20 +1,20 @@
 package com.company;
 
-public class Cliente extends Cuenta{
+public class Cliente {
 
     private CuentaCorriente CuentaCorriente;
     private CajaAhorro CajaAhorro;
 
-    public Cliente() {
-        CuentaCorriente = new CuentaCorriente();
-        CajaAhorro = new CajaAhorro();
+    public Cliente(Double saldoInicial){
+        CuentaCorriente = new CuentaCorriente(0.00);
+        CajaAhorro = new CajaAhorro(saldoInicial);
     }
 
-    public com.company.CuentaCorriente getCuentaCorriente() {
+    public CuentaCorriente getCuentaCorriente() {
         return CuentaCorriente;
     }
 
-    public com.company.CajaAhorro getCajaAhorro() {
+    public CajaAhorro getCajaAhorro() {
         return CajaAhorro;
     }
 
