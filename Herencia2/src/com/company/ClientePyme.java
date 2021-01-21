@@ -18,5 +18,4 @@ public class ClientePyme extends Cliente {
     public Integer getCuit() {
         return cuit;
     }
-
 }
