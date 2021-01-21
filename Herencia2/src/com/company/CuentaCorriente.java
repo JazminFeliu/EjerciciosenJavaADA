@@ -7,11 +7,13 @@ public class CuentaCorriente extends Cuenta{
 
     private static final Double descubierto = 5000.00;
 
-    public CuentaCorriente(Double saldoInicial) {
+    public CuentaCorriente(Double saldoInicial){
+
         super(saldoInicial);
     }
 
     public static Double getDescubierto() {
+
         return descubierto;
     }
 
@@ -21,6 +23,6 @@ public class CuentaCorriente extends Cuenta{
         if(monto >= (saldo+descubierto)){
             return;}
 
-            super.extraer(monto);
+        super.extraer(monto);
     }
 }

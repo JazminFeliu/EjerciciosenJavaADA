@@ -18,10 +18,12 @@ public class Cuenta {
     public void extraer(Double monto){
 
         saldo -= monto;
-    }
 
+    }
     public Double getSaldo(){
 
         return saldo;
     }
+
+
 }

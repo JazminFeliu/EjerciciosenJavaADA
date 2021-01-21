@@ -2,20 +2,30 @@ package com.company;
 
 public class Cliente {
 
-    private CuentaCorriente CuentaCorriente;
-    private CajaAhorro CajaAhorro;
+    protected Integer idCliente;
+    protected CuentaCorriente CuentaCorriente;
+    protected CajaAhorro CajaAhorro;
+    private Double prestamo;
 
-    public Cliente(Double saldoInicial){
-        CuentaCorriente = new CuentaCorriente(0.00);
+    public Cliente(Integer idCliente, Double saldoInicial){
+        this.idCliente = idCliente;
+        CuentaCorriente = new CuentaCorriente(saldoInicial);
         CajaAhorro = new CajaAhorro(saldoInicial);
     }
 
+    public Integer getIdCliente(){
+        return idCliente;
+    }
     public CuentaCorriente getCuentaCorriente() {
         return CuentaCorriente;
     }
 
     public CajaAhorro getCajaAhorro() {
         return CajaAhorro;
+    }
+
+    public void pedirPrestamo(Double monto){
+        CajaAhorro.depositar(monto);
     }
 
 }
