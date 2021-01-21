@@ -18,9 +18,5 @@ public class ClienteIndividuo extends Cliente{
     public Integer getDni() {
         return dni;
     }
-
-
-
-
 }
 

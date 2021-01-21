@@ -9,7 +9,6 @@ public class ClienteEmpresa extends Cliente{
         super(idCliente, saldoInicial);
         this.razonSocial = getRazonSocial();
         this.cuit = getCuit();
-
     }
 
     public String getRazonSocial() {

@@ -48,9 +48,9 @@ public class Main {
         jazmin.pedirPrestamo(10000.00);
         System.out.println("El saldo de Jazmin con Préstamo es: " + cdaJazmin.getSaldo());
 
-
         CuentaCorriente ccJazmin = jazmin.getCuentaCorriente();
-        System.out.println("El saldo inicial de la CC de Jazmin es: "+ccJazmin.getSaldo()+" y tiene un descubierto de $5000");
+        System.out.println("El saldo inicial de la CC de Jazmin es: "+ccJazmin.getSaldo()+
+                " y tiene un descubierto de $5000");
 
         // Cliente Empresa
         CajaAhorro cdaglobant = globant.getCajaAhorro();
@@ -60,7 +60,8 @@ public class Main {
         System.out.println("El nuevo saldo de la CA de Globant es: "+cdaglobant.getSaldo());
 
         CuentaCorriente ccglobant = globant.getCuentaCorriente();
-        System.out.println("El saldo incial de la CC de Globant es: "+ccglobant.getSaldo()+" y tiene un decubierto de $ 5000");
+        System.out.println("El saldo incial de la CC de Globant es: "+ccglobant.getSaldo()+
+                " y tiene un decubierto de $ 5000");
         ccglobant.extraer(29000.00);
         System.out.println("El nuevo saldo es: "+ccglobant.getSaldo());
         globant.pedirPrestamo(10000.00);
@@ -74,9 +75,8 @@ public class Main {
         aquaPyME.pedirPrestamo(10500.20);
         System.out.println("El saldo de la PyMe Aqua con Préstamo es: " + cdaAquaPyME.getSaldo());
 
-
         CuentaCorriente ccAquaPyME = aquaPyME.getCuentaCorriente();
-        System.out.println("El saldo incial de la CC de la PyME Aqua es: "+ccAquaPyME.getSaldo()+" y tiene un decubierto de $ 5000");
+        System.out.println("El saldo incial de la CC de la PyME Aqua es: "+ccAquaPyME.getSaldo()+
+                " y tiene un decubierto de $ 5000");
     }
-
 }

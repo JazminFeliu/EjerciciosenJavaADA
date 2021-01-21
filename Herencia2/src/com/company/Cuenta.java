@@ -24,6 +24,4 @@ public class Cuenta {
 
         return saldo;
     }
-
-
 }
