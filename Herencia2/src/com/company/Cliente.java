@@ -1,6 +1,6 @@
 package com.company;
 
-public class Cliente {
+public abstract class Cliente {
 
     protected Integer idCliente;
     protected CuentaCorriente CuentaCorriente;

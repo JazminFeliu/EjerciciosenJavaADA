@@ -22,7 +22,7 @@ public class CuentaCorriente extends Cuenta{
     public void extraer(Double monto) {
         if(monto >= (saldo+descubierto)){
             return;}
+        saldo -= monto;
 
-        super.extraer(monto);
     }
 }

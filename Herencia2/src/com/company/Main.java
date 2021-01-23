@@ -78,5 +78,10 @@ public class Main {
         CuentaCorriente ccAquaPyME = aquaPyME.getCuentaCorriente();
         System.out.println("El saldo incial de la CC de la PyME Aqua es: "+ccAquaPyME.getSaldo()+
                 " y tiene un decubierto de $ 5000");
+
+        CuentaCorriente cuentaNueva = new CuentaCorriente(100.00);
+        cuentaNueva.depositar(250.30);
+        cuentaNueva.getDescubierto();
+
     }
 }

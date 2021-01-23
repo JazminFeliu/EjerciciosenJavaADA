@@ -12,7 +12,7 @@ public class CajaAhorro extends Cuenta{
     @Override
     public void extraer(Double monto) {
         if(monto <= saldo){
-            super.extraer(monto);
+            saldo -= monto;;
         }
     }
 }
