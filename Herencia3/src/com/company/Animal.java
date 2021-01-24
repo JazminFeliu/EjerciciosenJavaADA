@@ -1,31 +1,20 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class Animal {
+public abstract class Animal {
 
     protected String nombre;
     protected Integer numeroCollar;
-    protected String horarioDeComidas;
-    protected Boolean vacunado;
-    protected Integer edadEstimada;
+    protected List<Integer> horario;
 
-    public Animal(String nombre, Integer numeroId, String horarioDeComidas) {
+
+    public Animal(String nombre, Integer numeroId, List<Integer> horarioDeComidas) {
         this.nombre = nombre;
         this.numeroCollar = numeroId;
-        this.horarioDeComidas = horarioDeComidas;
-    }
-    public Animal(String nombre, Integer numeroId, String horarioDeComidas,Boolean vacunado) {
-        this.nombre = nombre;
-        this.numeroCollar = numeroId;
-        this.horarioDeComidas = horarioDeComidas;
-        this.vacunado = vacunado;
-    }
-    public Animal(String nombre, Integer numeroId, String horarioDeComidas,Integer edadEstimada) {
-        this.nombre = nombre;
-        this.numeroCollar = numeroId;
-        this.horarioDeComidas = horarioDeComidas;
-        this.edadEstimada = edadEstimada;
+        this.horario = horarioDeComidas;
     }
 }
 

@@ -4,12 +4,11 @@ import java.util.List;
 
 public class Reptil extends Animal {
 
-    public Reptil(String nombre, Integer numeroId, String horarioDeComidas) {
-        super(nombre, numeroId, horarioDeComidas);
-    }
+    private Integer edadEstimada;
 
-    public Reptil(String nombre, Integer numeroId, String horarioDeComidas, Integer edadEstimada) {
-        super(nombre, numeroId, horarioDeComidas, edadEstimada);
+    public Reptil(String nombre, Integer numeroId, List<Integer> horarioDeComidas, Integer edadEstimada) {
+        super(nombre, numeroId, horarioDeComidas);
+        this.edadEstimada = edadEstimada;
     }
 
     @Override
@@ -17,7 +16,7 @@ public class Reptil extends Animal {
         return "Reptil{" +
                 "nombre='" + nombre + '\'' +
                 ", numeroCollar=" + numeroCollar +
-                ", horarioDeComidas='" + horarioDeComidas + '\'' +
+                ", horarioDeComidas='" + horario + '\'' +
                 ", edadEstimada=" + edadEstimada +
                 '}';
     }
