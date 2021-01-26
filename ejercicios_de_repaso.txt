@@ -1,0 +1,15 @@
+1 - ejercicio con figuras
+Crear un sistema que permita calcular el perímetro y área de una figura.
+Las figuras pueden ser cuadrados, triángulos o círculos.
+Todas las figuras tienen un color asignado, que puede consultarse.
+Nota: el valor de Pi pueden tomarlo como 3.14 o pueden usar la constante Math.PI
+
+2 - exámenes online
+Crear un sistema que permita asignar exámenes a alumnos.
+Alumnos y docentes tienen nombre, dni y una lista de asignaturas.
+Cada alumno tiene un examen.
+Cada examen tiene una nota.
+Cada examen conoce al docente que va a corregirlo.
+Hay exámenes multiple choice y exámenes con preguntas a desarrollar. También existen exámenes mixtos.
+Los exámenes multiple-choice tienen una lista de consignas, cada consigna con opciones que pueden ser correctas o incorrectas.
+Los exámenes con preguntas a desarrollar tienen una lista de consignas. No se guarda la respuesta correcta, el docente debe corregirlas manualmente.
