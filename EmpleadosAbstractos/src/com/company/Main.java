@@ -46,7 +46,7 @@ public class Main {
         System.out.println("El salario del gerente es: " + g.calcularSalario());
         System.out.println("Los salarios de los empleados son: ");
         for (int i = 0; i < empleados1.size(); i++) {
-            System.out.println("Salario de "+empleados1.get(i).nombre+" : "+empleados1.get(i).calcularSalario());
+            System.out.println("Salario de "+empleados1.get(i).getNombre()+" : "+empleados1.get(i).calcularSalario());
         }
 
         List<Empleado> empleados = new ArrayList<>(Arrays.asList(
@@ -57,7 +57,7 @@ public class Main {
         ));
 
         for(Empleado e: empleados)
-            System.out.println(e.nombre);
+            System.out.println(e.getNombre());
 
         List<Tarea> tareasPendientes = new ArrayList<>(Arrays.asList(
                 new Tarea(1),
