@@ -14,6 +14,7 @@ public class Empleado extends Persona {
     List<Tarea> tareasEjecutadas = new ArrayList<>();
 
     public void ejecutar(Tarea tarea){
+
         tareasEjecutadas.add(tarea);
     };
 
