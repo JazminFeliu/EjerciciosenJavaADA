@@ -1,38 +1,41 @@
 package com.company;
 
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        List<String> visitas = new LinkedList<>();
+        Set<String> asistentes = new TreeSet<>();
+        Queue<String> cola = new LinkedList<>();
+
         //HashSet<String> asistentes = new HashSet<>();
-        TreeSet<String> asistentes = new TreeSet<>();
+        //TreeSet<String> asistentes = new TreeSet<>();
 
         Scanner sc = new Scanner((System.in));
         String siguiente;
         do{
             System.out.println("Siguiente: ");
             siguiente =sc.nextLine();
-            asistentes.add(siguiente);
+            System.out.println();
+            if(siguiente !=""){
+                asistentes.add(siguiente);
+                visitas.add(siguiente);
+                cola.add(siguiente);
+            }
         }while (!siguiente.equals(""));
 
-        asistentes.add("Pablo");
-        asistentes.add("Juli");
-        asistentes.add("Sebastian");
-        asistentes.add("Juli");
-        asistentes.add("Jazmin");
-        asistentes.add("Juli");
-        asistentes.add("Caro");
-        asistentes.add("Pablo");
-
-        System.out.println("Cantidad "+asistentes.size());
-        System.out.println("Fue Pablo? "+asistentes.contains("Pablo"));
-
-        for(String asistente : asistentes){
-            System.out.println("Asistente: "+asistente);
-        }
+        System.out.println("Asistentes: "+asistentes.size());
+        System.out.println("Visitas: "+visitas.size());
+        System.out.println("Cola: "+cola.size());
         System.out.println("Asistentes: "+asistentes);
+        System.out.println("Visitas: "+visitas);
+        System.out.println("Cola: "+cola);
+
+        System.out.println("Primero en la cola "+cola.poll());
+        System.out.println("Primer visita: "+visitas.get((0)));
+        System.out.println("2. visitas: "+visitas);
+        System.out.println("2.cola: "+cola);
     }
 }
