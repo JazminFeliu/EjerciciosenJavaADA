@@ -6,4 +6,5 @@ public abstract class Hospedaje implements Reservable, LowCost{
     public void informarPrecio(){
         LowCost.super.informarPrecio();
     }
+
 }

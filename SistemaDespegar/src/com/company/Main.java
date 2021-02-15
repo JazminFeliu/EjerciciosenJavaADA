@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
@@ -13,29 +14,38 @@ Y excursiones que se pueden reservar.
 Los aviones, hoteles y colectivos lowcost se los puede regatear y baja un 20% el precio.
  */
 
-    /*
-    clases abstractas:
-    Transporte --> metodos abstractos ( reservar, alquilar).
-    Hospedaje -->  metodos abstractos (reservar, alquilar)
 
-    clases:
-    Clase Avion, Tren, Colectivo, Auto extends Transporte
-    Clase Hotel, Casa, Departamento extends Hospedaje
 
-Clase Abstracta Paquete
-    metodos elegirTransporte, elegirHospedaje, regatear, reservarExcursion
-Interface Reservable,
-    metodos reservar, alquilar, vender
-Interface LowCost
-metodo bajarPrecio
-    Clase Usuario extends Paquete implements Reservable, LowCost
-
-     */
     public static void main(String[] args) {
 
-        List<Transporte> transportes = new ArrayList<>();
-        List<Hospedaje> hospedajes = new ArrayList<>();
+        List<Transporte> transportes = new LinkedList<>();
+        List<Hospedaje> hospedajes = new LinkedList<>();
+        List<Excursion> excursiones = new ArrayList<>();
 
+        transportes.add(new Avion("avion"));
+        transportes.add(new TransportePrivado("auto"));
+        transportes.add(new Avion("avion2"));
+        transportes.add(new Colectivo("colectivo"));
+        transportes.add(new Tren("tren"));
+
+        hospedajes.add(new Casa());
+        hospedajes.add(new Hotel());
+        hospedajes.add(new Departamento());
+
+        TransportePrivado auto = new TransportePrivado("mi auto");
+        Hotel hotel = new Hotel();
+        Avion avion = new Avion("comercial");
+
+        auto.reservar();
+        System.out.println("Precio del auto: ");
+        auto.informarPrecio();
+        System.out.println("Precio del hotel: ");
+        hotel.informarPrecio();
+        hotel.reservar();
+        hotel.bajarPrecio();
+        avion.bajarPrecio();
+        Usuario usuario = new Usuario();
+        usuario.regatear(hotel);
 
     }
 }
