@@ -22,6 +22,7 @@ public class Main {
         Nota: se deben guardar las cartas de cada jugador (no sólo mostrarlas en pantalla).
          */
 
+        //ver variante de poker texas hold em
         List<Integer>cartas = new ArrayList<>();
         for(int i=1; i < 53; i++)
             cartas.add(i);
@@ -54,6 +55,5 @@ public class Main {
                 System.out.println("Cartas: " + lasCartas[i]);
             }
         }
-
     }
 }
