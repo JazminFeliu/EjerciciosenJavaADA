@@ -14,7 +14,7 @@ public class Main {
         System.out.println("Nro. random: "+enteroRandom);
 
         //Ejemplo random con Stream
-        IntStream enterosAleatorios = aleatorio.ints(9,1,53);
+        IntStream enterosAleatorios = aleatorio.ints(9,1,5);
         enterosAleatorios.forEach(numero -> System.out.println("Numero: "+numero));
     }
 }
