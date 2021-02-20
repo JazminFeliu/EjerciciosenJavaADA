@@ -34,7 +34,9 @@ public class Main {
         //eager -> ansioso
         //lazy -> perezoso
 
-        Iterator iteradorNumeros = numeros.filter(n ->n>500).distinct().iterator();
+        Iterator iteradorNumeros = numeros.filter(n ->n>500).map(o ->o*10).distinct().iterator();
+        //map, filter, distinct son operaciones intermedias, y solo se pueden realizar en un llamado
+        //no sirve que se lo llame varias veces al iterador, no lo toma java
 
         while (iteradorNumeros.hasNext() && unSetDeNumerosEnteros.size() < cantidad)
             unSetDeNumerosEnteros.add((Integer)iteradorNumeros.next());
