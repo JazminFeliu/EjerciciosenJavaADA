@@ -16,9 +16,6 @@ public class RegistroSeccional {
     private LocalDate fechaCambioPropietario;
     private String patente;
     private HashSet<String>patentesUnicas = new HashSet<>();
-    private Integer sizePatentesUnicas;
-
-
 
     public RegistroSeccional(Integer idRegistroSeccional) {
         this.idRegistroSeccional = idRegistroSeccional;
@@ -37,10 +34,10 @@ public class RegistroSeccional {
     }
 
     public String getPatente(){
-        patente = generarPatenteRandom();
-        while (verificarIngresoPatenteUnica(patente) == false){
-            generarPatenteRandom();
-        }return patente;
+        do {
+            patente = generarPatenteRandom();
+        }while (!verificarIngresoPatenteUnica(patente));
+        return patente;
     }
 
     public LocalDate getFechaDeAlta(){
@@ -66,19 +63,26 @@ public class RegistroSeccional {
             int l = (int)(Math.random()*(90-65+1)+65);
             letras = (char)l + letras;
         }
+        patente = numeros+letras;
         return patente;
     }
 
     private Boolean verificarIngresoPatenteUnica(String patente) {
-        patentesUnicas.add(patente);
-        sizePatentesUnicas = patentesUnicas.size();
-        if (patentesUnicas.size() == sizePatentesUnicas) {
-            return false;
-        }
-        return true;
+       return(patentesUnicas.add(patente));
    }
-    public void cargarPersonas(Vehiculo v){
-        //propietarios y autorizados
+    public void darAltaPropietario(Persona propietario){
+        this.propietario = propietario;
+    }
+    public void darAltaAutorizados(List<Persona>autorizados){
+        this.autorizados = autorizados;
+    }
+
+    public Persona getPropietario() {
+        return propietario;
+    }
+
+    public List<Persona> getAutorizados() {
+        return autorizados;
     }
 
     public void cambiarPropietario(Vehiculo v){

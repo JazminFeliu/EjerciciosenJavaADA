@@ -9,7 +9,6 @@ public abstract class Vehiculo {
 
     protected Integer idRegistroSeccional;
     protected String patente;
-    protected List<Vehiculo> vehiculos;
     protected String uso; //uso particular o profesional
     protected Persona propietario;
     protected List<Persona>autorizados;
@@ -17,10 +16,18 @@ public abstract class Vehiculo {
     protected LocalDate fechaCambioPropietario;
 
 
-    protected Vehiculo(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente) {
+    protected Vehiculo(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente, Persona propietario, List<Persona>autorizados) {
         this.idRegistroSeccional = idRegistroSeccional;
         this.fechaDeAlta = fechaDeAlta;
         this.patente = patente;
+        this.propietario = propietario;
+        this.autorizados = autorizados;
+    }
+    protected Vehiculo(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente, Persona propietario){
+        this.idRegistroSeccional = idRegistroSeccional;
+        this.fechaDeAlta = fechaDeAlta;
+        this.patente = patente;
+        this.propietario = propietario;
 
     }
 

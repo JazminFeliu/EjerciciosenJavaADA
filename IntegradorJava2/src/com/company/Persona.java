@@ -1,6 +1,6 @@
 package com.company;
 
-public abstract class Persona {
+public class Persona {
 
     private String nombre;
     private String dni;
