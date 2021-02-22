@@ -6,11 +6,18 @@ import java.util.List;
 public class AutoElectrico extends Vehiculo implements VehiculoElectrico {
 
 
-    protected AutoElectrico(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente, Persona propietario, List<Persona> autorizados) {
-        super(idRegistroSeccional, fechaDeAlta, patente, propietario, autorizados);
+    private Integer voltaje;
+    protected AutoElectrico(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente, String uso, Persona propietario, List<Persona> autorizados) {
+        super(idRegistroSeccional, fechaDeAlta, patente, uso, propietario, autorizados);
+
     }
 
-    protected AutoElectrico(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente, Persona propietario) {
-        super(idRegistroSeccional, fechaDeAlta, patente, propietario);
+    protected AutoElectrico(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente, String uso, Persona propietario) {
+        super(idRegistroSeccional, fechaDeAlta, patente, uso, propietario);
+    }
+
+    @Override
+    public void solicitarVoltaje() {
+        this.voltaje = 220;
     }
 }

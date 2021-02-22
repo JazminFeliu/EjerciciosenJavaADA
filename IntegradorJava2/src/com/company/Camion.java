@@ -6,11 +6,11 @@ import java.util.List;
 public class Camion extends Vehiculo implements VehiculoACombustion {
 
 
-    protected Camion(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente, Persona propietario, List<Persona> autorizados) {
-        super(idRegistroSeccional, fechaDeAlta, patente, propietario, autorizados);
+    protected Camion(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente, String uso, Persona propietario, List<Persona> autorizados) {
+        super(idRegistroSeccional, fechaDeAlta, patente, uso, propietario, autorizados);
     }
 
-    protected Camion(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente, Persona propietario) {
-        super(idRegistroSeccional, fechaDeAlta, patente, propietario);
+    protected Camion(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente, String uso, Persona propietario) {
+        super(idRegistroSeccional, fechaDeAlta, patente, uso, propietario);
     }
 }

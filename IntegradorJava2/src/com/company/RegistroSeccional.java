@@ -1,36 +1,53 @@
 package com.company;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class RegistroSeccional {
 
     private List<Vehiculo> vehiculos;
     private Integer idRegistroSeccional;
-    private String uso; //uso particular o profesional
+    private String uso;
     private Persona propietario;
     private List<Persona>autorizados;
-    private LocalDate fechaDeAlta;
-    private LocalDate fechaCambioPropietario;
+    private LocalDate fecha;
     private String patente;
     private HashSet<String>patentesUnicas = new HashSet<>();
+
 
     public RegistroSeccional(Integer idRegistroSeccional) {
         this.idRegistroSeccional = idRegistroSeccional;
         vehiculos = new LinkedList<>();
     }
-
-    public void darAltaVehiculo(Vehiculo v ) {
-        this.fechaDeAlta = getFechaDeAlta();
-        this.patente = getPatente();
-        vehiculos.add(v);
-        //alta nuevo vehiculo
+    private LocalDate cargarFechaAleatoria(Integer opcion){
+         LocalDate fechaopcional1 = LocalDate.now();
+         LocalDate fechaopcional2 = LocalDate.of(2019,06,15);
+         LocalDate fechaOpcional3 = LocalDate.of(2020, 9, 6);
+         Map<Integer,LocalDate>mapaFechasOpcionales = new HashMap<>();
+         nuevaFechaEnMapa(mapaFechasOpcionales,1,fechaopcional1);
+         nuevaFechaEnMapa(mapaFechasOpcionales, 2, fechaopcional2);
+         nuevaFechaEnMapa(mapaFechasOpcionales, 3, fechaOpcional3);
+        return mapaFechasOpcionales.get(opcion);
     }
 
-    public void transferirVehiculo(Vehiculo v){
-        //registro de vehiculo existente transferencia
+    private static void nuevaFechaEnMapa(Map<Integer,LocalDate>mapaFechasOpcionales,Integer nro, LocalDate fecha) {
+        mapaFechasOpcionales.put(nro,fecha);
+    }
+
+    //Opcional 2: Se debe registrar la FECHA en la que se da de alta un automotor.
+    public LocalDate getFechaDeAlta(){
+        Random aleatorio = new Random();
+        int opcionFechaAleatoria = aleatorio.nextInt(3)+1;
+        fecha = cargarFechaAleatoria(opcionFechaAleatoria);
+        return fecha;
+    }
+
+    public void darAltaVehiculo(Vehiculo v ) {
+        this.fecha = getFechaDeAlta();
+        this.patente = getPatente();
+        this.uso = getUso();
+        vehiculos.add(v);
+        //alta nuevo vehiculo
     }
 
     public String getPatente(){
@@ -38,11 +55,6 @@ public class RegistroSeccional {
             patente = generarPatenteRandom();
         }while (!verificarIngresoPatenteUnica(patente));
         return patente;
-    }
-
-    public LocalDate getFechaDeAlta(){
-        fechaDeAlta = LocalDate.now();
-        return fechaDeAlta;
     }
 
     public List<Vehiculo> getVehiculos() {
@@ -67,6 +79,8 @@ public class RegistroSeccional {
         return patente;
     }
 
+    //Opcional 1: Cada automotor tiene una PATENTE unica que se asigna automáticamente
+    // al realizar el alta del registro
     private Boolean verificarIngresoPatenteUnica(String patente) {
        return(patentesUnicas.add(patente));
    }
@@ -85,7 +99,13 @@ public class RegistroSeccional {
         return autorizados;
     }
 
-    public void cambiarPropietario(Vehiculo v){
+    public String getUso() {
+        Random r = new Random();
+        if (r.nextInt() < 20) {
+            uso = "Particular";
+        }else{
+            uso = "Profesional";
+        }return uso;
     }
 }
 
