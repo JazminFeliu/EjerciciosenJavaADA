@@ -15,6 +15,9 @@ public class Main {
 	persona que lo ejecuta y una descripcion.
 	Una vez que el presupuesto está listo (el usuario decide finalizar),
 	mostrar el presupuesto total y el detalle de todos los ítems agregados.
+
+	opcionales:
+	Los usuarios hacen fila para pedir presupuestos y esos presupuestos al final del dia se muestran en el orden de llegada.
 	 */
 
 
@@ -31,9 +34,9 @@ public class Main {
                                                   julia,
                                                   "Apoyo escolar");
 
-        Item item = new Item(cuadernoA4R,10);
+        Itemclass item = new Itemclass(cuadernoA4R,10);
         roberta.agregarItem(item);
-        Item item1 = new Item(apoyoEscolarCompu,2);
+        Itemclass item1 = new Itemclass(apoyoEscolarCompu,2);
         roberta.agregarItem(item1);
         roberta.mostrarDetallePresupuesto();
 

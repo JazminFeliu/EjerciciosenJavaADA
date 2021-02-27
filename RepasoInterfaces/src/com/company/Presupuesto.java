@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,9 +10,9 @@ public class Presupuesto implements Presupuestable{
     private Double total;
     private Menu menu;
     private Integer opcion;
-    private List<Item> listaDeItems;
+    private List<Itemclass> listaDeItems;
     private Scanner sc;
-    private Item item;
+    private Itemclass item;
     private boolean isNext;
 
 
@@ -24,7 +23,7 @@ public class Presupuesto implements Presupuestable{
         total = 0.0;
         this.listaDeItems = usuario.getListaDeItems();
         sc = new Scanner(System.in);
-        item = new Item();
+        item = new Itemclass();
         isNext = true;
 
     }
@@ -35,7 +34,8 @@ public class Presupuesto implements Presupuestable{
         System.out.println("2 - Modificar un item.");
         System.out.println("3 - Eliminar un item.");
         System.out.println("4- Mostrar detalle del presupuesto.");
-        System.out.println("5 - Finalizar.");
+        System.out.println("5 - Finalizar carga");
+        System.out.println("6 - Salir");
 
         Scanner sc = new Scanner(System.in);
         opcion = sc.nextInt();
@@ -73,7 +73,7 @@ public class Presupuesto implements Presupuestable{
 
 
     @Override
-    public void agregarItem(Item item) {
+    public void agregarItem(Itemclass item) {
         listaDeItems.add(item);
     }
 
@@ -97,7 +97,7 @@ public class Presupuesto implements Presupuestable{
         System.out.println("Total presupuestado: "+total);
     }
 
-    private void listarProducto(Item item, Double subtotal){
+    private void listarProducto(Itemclass item, Double subtotal){
         System.out.println("Producto: "+item.nombre);
         System.out.println("Descripcion: "+item.descripcion);
         System.out.println("Cantidad presupuestada: "+item.cantidadItem);
@@ -105,7 +105,7 @@ public class Presupuesto implements Presupuestable{
         System.out.println("Subtotal: "+subtotal);
     }
 
-    private void listarServicio(Item item, Double subtotal){
+    private void listarServicio(Itemclass item, Double subtotal){
         System.out.println("Servicio: "+item.nombre);
         System.out.println("Descripcion: "+item.descripcion);
         System.out.println("Profesional: "+item.nombreProfesional);
@@ -116,12 +116,12 @@ public class Presupuesto implements Presupuestable{
     }
 
     @Override
-    public void modificarItem(Item item) {
+    public void modificarItem(Itemclass item) {
 
     }
 
     @Override
-    public void eliminarItem(Item item) {
+    public void eliminarItem(Itemclass item) {
 
     }
 

@@ -17,12 +17,14 @@ public class Menu {
         String opcion3 = "3 - Eliminar un item.";
         String opcion4 = "4- Mostrar detalle del presupuesto";
         String opcion5 = "5 - Finalizar.";
+        String opcion6 = "6 - Salir";
 
         agregarOpcionMenu(menu, 1, opcion1);
         agregarOpcionMenu(menu, 2, opcion2);
         agregarOpcionMenu(menu, 3, opcion3);
         agregarOpcionMenu(menu, 4, opcion4);
         agregarOpcionMenu(menu, 5, opcion5);
+        agregarOpcionMenu(menu, 6, opcion6);
 
         return menu.get(opcion);
     }

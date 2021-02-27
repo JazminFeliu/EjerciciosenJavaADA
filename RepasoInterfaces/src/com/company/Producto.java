@@ -2,7 +2,7 @@ package com.company;
 
 public class Producto {
     //Cada producto tiene una cantidad, un precio unitario, un nombre y una descripcion.
-        private Integer cantidad;
+        private Integer cantidad;// aca lo carga el usuario cuando cargamos el item, repasar como utilizar una interfaz nueva Item
         private Double precioUnitario;
         private String nombre;
         private String descripcion;
@@ -26,4 +26,7 @@ public class Producto {
         return nombre;
     }
 
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
 }

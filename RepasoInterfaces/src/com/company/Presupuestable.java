@@ -4,15 +4,15 @@ public interface Presupuestable {
 
 
 
-    default void agregarItem(Item item){
+    default void agregarItem(Itemclass item){
 
     }
 
-    default void modificarItem(Item item){
+    default void modificarItem(Itemclass item){
     }
 
 
-    default void eliminarItem(Item item){
+    default void eliminarItem(Itemclass item){
 
     }
 

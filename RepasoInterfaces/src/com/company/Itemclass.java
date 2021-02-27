@@ -3,7 +3,7 @@ package com.company;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Item {
+public class Itemclass {
 
     public String tipoItem;
     public Integer cantidadItem;
@@ -12,10 +12,10 @@ public class Item {
     public String descripcion;
     public String nombreProfesional;
 
-    public Item(){
+    public Itemclass(){
 
     }
-    public Item(Producto producto, Integer cantidadItem ) {
+    public Itemclass(Producto producto, Integer cantidadItem ) {
         this.nombre = producto.getNombre();
         this.descripcion = producto.getDescripcion();
         this.precio = producto.getPrecioUnitario();
@@ -23,7 +23,7 @@ public class Item {
         this.cantidadItem = cantidadItem;
     }
 
-    public Item(Servicio servicio, Integer cantidadItem) {
+    public Itemclass(Servicio servicio, Integer cantidadItem) {
         this.nombre = servicio.getNombreServicio();
         this.descripcion = servicio.getDescripcion();
         this.nombreProfesional = servicio.getNombreProfesional();

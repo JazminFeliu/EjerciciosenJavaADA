@@ -7,7 +7,7 @@ public class Usuario extends Persona implements Presupuestable {
 
     public Double subtotal = 0.0;
     public Double total = 0.0;
-    public List<Item> listaDeItems = new LinkedList<>();
+    public List<Itemclass> listaDeItems = new LinkedList<>();
 
     public Usuario(String nombre) {
         super(nombre);
@@ -17,7 +17,7 @@ public class Usuario extends Persona implements Presupuestable {
     }
 
     @Override
-    public void agregarItem(Item item) {
+    public void agregarItem(Itemclass item) {
         listaDeItems.add(item);
     }
 
@@ -41,7 +41,7 @@ public class Usuario extends Persona implements Presupuestable {
         System.out.println("Total presupuestado: "+total);
     }
 
-    private void listarProducto(Item item, Double subtotal){
+    private void listarProducto(Itemclass item, Double subtotal){
         System.out.println("Producto: "+item.nombre);
         System.out.println("Descripcion: "+item.descripcion);
         System.out.println("Cantidad presupuestada: "+item.cantidadItem);
@@ -49,7 +49,7 @@ public class Usuario extends Persona implements Presupuestable {
         System.out.println("Subtotal: "+subtotal);
     }
 
-    public void listarServicio(Item item, Double subtotal){
+    public void listarServicio(Itemclass item, Double subtotal){
         System.out.println("Servicio: "+item.nombre);
         System.out.println("Descripcion: "+item.descripcion);
         System.out.println("Profesional: "+item.nombreProfesional);
@@ -60,12 +60,12 @@ public class Usuario extends Persona implements Presupuestable {
     }
 
     @Override
-    public void modificarItem(Item item) {
+    public void modificarItem(Itemclass item) {
 
     }
 
     @Override
-    public void eliminarItem(Item item) {
+    public void eliminarItem(Itemclass item) {
 
     }
 
@@ -77,7 +77,7 @@ public class Usuario extends Persona implements Presupuestable {
         return total;
     }
 
-    public List<Item> getListaDeItems() {
+    public List<Itemclass> getListaDeItems() {
         return listaDeItems;
     }
 }
