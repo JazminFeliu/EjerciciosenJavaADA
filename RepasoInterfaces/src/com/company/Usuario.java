@@ -3,7 +3,7 @@ package com.company;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Usuario extends Persona implements Presupuestable {
+public class Usuario extends Persona implements Item {
 
     public Double subtotal = 0.0;
     public Double total = 0.0;

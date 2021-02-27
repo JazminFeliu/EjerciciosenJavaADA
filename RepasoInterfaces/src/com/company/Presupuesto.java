@@ -3,7 +3,7 @@ package com.company;
 import java.util.List;
 import java.util.Scanner;
 
-public class Presupuesto implements Presupuestable{
+public class Presupuesto implements Item {
 
     private Usuario usuario;
     private Double subtotal;

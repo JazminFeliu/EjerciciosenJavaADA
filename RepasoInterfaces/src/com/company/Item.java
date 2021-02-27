@@ -1,6 +1,6 @@
 package com.company;
 
-public interface Presupuestable {
+public interface Item {
 
 
 
