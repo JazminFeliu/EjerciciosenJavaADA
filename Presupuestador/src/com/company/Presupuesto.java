@@ -80,6 +80,9 @@ public class Presupuesto {
         List<Item> items = getItems();
 
         System.out.println("Presupuesto perteneciente al usuario: "+usuario.getNombre());
+        for (int i = 0; i<items.size(); i++){
+            items.get(i).mostrarDetalles();
+        }
         System.out.println("Total del presupuesto: $ "+totalPresupuesto);
 
     }
