@@ -1,16 +1,9 @@
 package com.company;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Scanner;
-
-
 public class Usuario{
 
     private String nombre;
     private Presupuesto presupuesto;
-
 
 
     public Usuario(String nombre) {
@@ -18,17 +11,18 @@ public class Usuario{
     }
 
     public void armarPresupuesto(Usuario usuario) {
+
         presupuesto = new Presupuesto(usuario);
-        presupuesto.armarPresupuesto(usuario, presupuesto);
+        presupuesto.armarPresupuesto();
+
     }
 
     public Presupuesto getPresupuesto(){
-        return presupuesto.getPresupuesto();
+        return presupuesto;
     }
 
     public String getNombre() {
         return nombre;
     }
-
 
 }

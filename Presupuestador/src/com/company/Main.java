@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
@@ -24,25 +25,45 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int op = 0;
 
-        Queue<Presupuesto>todosLosPresupuestos = new LinkedList<>();
+        List<Presupuesto> todosLosPresupuestos = new LinkedList<>();
 
         do {
             System.out.println("Ingrese el nombre de usuario: ");
             String nombre = sc.nextLine();
 
             Usuario usuario = new Usuario(nombre);
+
             usuario.armarPresupuesto(usuario);
 
-            todosLosPresupuestos.add(usuario.getPresupuesto());
+            Presupuesto presupuesto = usuario.getPresupuesto();
+            todosLosPresupuestos.add(presupuesto);
 
             System.out.println("Desea continuar? 1=SI, 0=NO");
 
             op = sc.nextInt();
-            nombre = sc.nextLine();
+
+            sc.nextLine();
+
         } while ((op != 0));
 
-        System.out.println("Cantidad de presus: "+todosLosPresupuestos.size());
-        //armar impresion de presupuestos en un static void method
+
+        mostrarTodosLosPresupuestos(todosLosPresupuestos);
+    }
+
+    private static void mostrarTodosLosPresupuestos(List<Presupuesto> todosLosPresupuestos) {
+
+        Double total = 0.0;
+        System.out.println("****** LISTA DE TODOS LOS PRESUPUESTOS REALIZADOS ******");
+        for(Presupuesto p: todosLosPresupuestos){
+
+            p.mostrarPresupuesto();
+
+            total += p.getTotalPresupuesto();
+        }
+        System.out.println();
+        System.out.println("Cantidad de presupuestos: "+todosLosPresupuestos.size());
+        System.out.println("Importe total presupuestado: $ "+total);
+
     }
 }
 

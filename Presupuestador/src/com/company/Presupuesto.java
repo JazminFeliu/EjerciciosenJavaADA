@@ -7,7 +7,9 @@ public class Presupuesto {
     private List<Item> items;
     private Usuario usuario;
     private Double totalPresupuesto;
-    private Presupuesto presupuesto;
+    private Boolean isSum = false;
+    private Scanner scanner = new Scanner(System.in);
+
 
     public Presupuesto(Usuario usuario){
         this.usuario  = usuario;
@@ -15,12 +17,9 @@ public class Presupuesto {
         items  = new ArrayList<>();
     }
 
-
-    public void armarPresupuesto(Usuario usuario, Presupuesto presupuesto){
+    public void armarPresupuesto(){
 
         System.out.println("Se ha creado un nuevo presupuesto, por favor ingrese los items que quiere presupuestar.");
-
-        Scanner sc = new Scanner(System.in);
 
         int op = 0;
 
@@ -33,7 +32,7 @@ public class Presupuesto {
             System.out.println("0 - Salir");
             System.out.println("Ingrese la opcion deseada: ");
 
-            op = sc.nextInt();
+           op = scanner.nextInt();
 
             switch (op){
                 case 1:
@@ -46,7 +45,7 @@ public class Presupuesto {
                     eliminarElemento();
                     break;
                 case 4:
-                    mostrarPresupuesto(usuario, presupuesto);
+                    mostrarPresupuesto();
                     break;
                 case 0:
                     System.out.println("Gracias por utilizar el presupuestador");
@@ -61,93 +60,148 @@ public class Presupuesto {
     }
 
     private void agregarElemento() {
-        Scanner sc = new Scanner(System.in);
+
         Producto unProducto = new Producto("Cuaderno", "A4 Rallado", 150.00);
+
         System.out.println("Producto Cuaderno A4 Rallado");
         System.out.println("Ingrese la cantidad deseada: ");
-        int cantidad = sc.nextInt();
+        int cantidad = scanner.nextInt();
+
         unProducto.setCantidad(cantidad);
         agregarItem(unProducto);
-        agregarItem(new Servicio("Plomero", "Arregla los caños",500.0,4,"Silvio"));
-        List<Item> items = getItems();
-        for (int i = 0; i<items.size(); i++){
-            this.totalPresupuesto += items.get(i).calcularTotal();
-        }
+        scanner.nextLine();
+
+        Producto unProducto1 = new Producto("Termo 1.5 Lt", "Stanley Acer. Inox. Verde", 1000.00);
+
+        System.out.println("Producto Termo 1.5 Lt Stanley Acer. Inox. Verde");
+        System.out.println("Ingrese la cantidad deseada: ");
+        cantidad = scanner.nextInt();
+
+        unProducto1.setCantidad(cantidad);
+        agregarItem(unProducto1);
+        scanner.nextLine();
+
+        agregarItem(new Servicio("Clase particular", "Informática I y II",500.0,4,"Pablo"));
+
+        System.out.println("Servicio Clase Particular de Informática I y II");
+        System.out.println("Se han cargado 4 hs del Servicio, clase de Informática");
     }
 
-    public void mostrarPresupuesto(Usuario usuario, Presupuesto presupuesto) {
+    public void mostrarPresupuesto() {
 
         List<Item> items = getItems();
 
-        System.out.println("Presupuesto perteneciente al usuario: "+usuario.getNombre());
+        System.out.println();
+        System.out.println("### Presupuesto perteneciente al usuario: "+usuario.getNombre()+" ###");
+        System.out.println();
+
+        if (isSum){
+            totalPresupuesto = 0.0;
+        }
+
         for (int i = 0; i<items.size(); i++){
             items.get(i).mostrarDetalles();
+            this.totalPresupuesto += items.get(i).calcularTotal();
         }
-        System.out.println("Total del presupuesto: $ "+totalPresupuesto);
-
-    }
-
-    public Presupuesto getPresupuesto() {
-        return presupuesto;
+        System.out.println("*********>>>> TOTAL del presupuesto: $ "+totalPresupuesto);
+        isSum = true;
     }
 
     private void eliminarElemento() {
 
+        List<Item> items = getItems();
+
+        System.out.println(" *** LISTA DE ITEMS PRESUPUESTADOS ***");
+
+        for (int i = 0; i< items.size(); i++){
+            System.out.println("Item nro.:  "+ i);
+            items.get(i).mostrarDetalles();
+
+        }
+        System.out.println("Ingrese el nro. de item que quiere eliminar: ");
+        int indice = scanner.nextInt();
+        scanner.nextLine();
+
+        Item unItem = items.get(indice);
+
+        if(unItem instanceof Producto){
+            Producto producto = (Producto) unItem;
+            eliminarItem(producto);
+            System.out.println("El producto ha sido eliminado.");
+
+        }else{
+            Servicio servicio = (Servicio) unItem;
+            eliminarItem(servicio);
+            System.out.println("El servicio ha sido eliminado.");
+        }
     }
 
     private void modificarElemento() {
 
         List<Item> items = getItems();
 
-        int indice = 0;
+        System.out.println(" *** LISTA DE ITEMS PRESUPUESTADOS ***");
+
+        for (int i = 0; i< items.size(); i++){
+            System.out.println("Item nro.:  "+ i);
+            items.get(i).mostrarDetalles();
+        }
+
+        System.out.println("Ingrese el nro. de item que quiere modificar: ");
+        int indice = scanner.nextInt();
+        scanner.nextLine();
 
         Item unItem = items.get(indice);
 
         if(unItem instanceof Producto){
-            Producto coso = (Producto) unItem;
-            //hacer cosas de productos
-            coso.calcularTotal();
-            reemplazarItem(indice, coso);
-        }else{
-            Servicio coso = (Servicio) unItem;
-            //hacer cosas de servicios...
-            reemplazarItem(indice, coso);
-        }
+            Producto producto = (Producto) unItem;
 
-        if(unItem.getClass().getSimpleName().equals("Producto")){
-            //tengo un producto
+            System.out.println("Ingrese la nueva cantidad: ");
+            int cantidad = scanner.nextInt();
+
+            scanner.nextLine();
+            producto.setCantidad(cantidad);
+
+            producto.calcularTotal();
+
+            reemplazarItem(indice, producto);
+
+            System.out.println("El producto ha sido reemplazado con éxito.");
+
         }else{
-            //tengo un servicio
+            Servicio servicio = (Servicio) unItem;
+
+            System.out.println("Ingrese la nueva cantidad: ");
+            int cantidad = scanner.nextInt();
+
+            scanner.nextLine();
+            servicio.setCantidad(cantidad);
+
+            servicio.calcularTotal();
+
+            reemplazarItem(indice, servicio);
+
+            System.out.println("El servicio ha sido reemplazado con éxito.");
         }
     }
-
 
     public List<Item> getItems() {
         return items;
     }
 
-
     public void agregarItem(Item item) {
         items.add(item);
-
     }
 
     public void eliminarItem(Item item) {
         items.remove(item);
-
     }
-
 
     public void reemplazarItem(int indice, Item item) {
         items.set(indice, item);
     }
 
-    @Override
-    public String toString() {
-        return "Presupuesto{" +
-                "items=" + items +
-                ", usuario=" + usuario +
-                ", totalPresupuesto=" + totalPresupuesto +
-                '}';
+    public Double getTotalPresupuesto(){
+        return totalPresupuesto;
     }
 }

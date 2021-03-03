@@ -19,37 +19,18 @@ public class Servicio extends Elemento implements Item{
 
     public Servicio(String nombre, String descripcion, Double precio, String profesional){
         super(nombre, descripcion);
+
         this.precio = precio;
         this.profesional = profesional;
-    }
-
-    public Double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Double precio) {
-        this.precio = precio;
     }
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 
-    public String getProfesional() {
-        return profesional;
-    }
-
-    public void setProfesional(String profesional) {
-        this.profesional = profesional;
-    }
-
-    public Integer getCantidad() {
-    return cantidad;
-    }
-
     @Override
     public Double calcularTotal() {
-        return precio*cantidad;
+        return precio * cantidad;
     }
 
     @Override
@@ -59,7 +40,9 @@ public class Servicio extends Elemento implements Item{
         System.out.println("Profesional a cargo: "+profesional);
         System.out.println("Costo por hora: "+precio);
         System.out.println("Cantidad: "+cantidad);
+
         total = calcularTotal();
+
         System.out.println("Total del servicio solicitado: "+total);
         System.out.println();
     }
