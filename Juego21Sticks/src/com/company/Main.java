@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -33,7 +34,7 @@ public class Main {
         while (sticks > 2) {
             System.out.println("Cantidad de Sticks: " + sticks);
 
-            switch (op) {
+            switch (op.toUpperCase(Locale.ROOT)) {
                 case "S": {
                     System.out.println("Cuantos sticks querés sacar? (1 o 2): ");
                     palito = Integer.parseInt(sc.nextLine());
