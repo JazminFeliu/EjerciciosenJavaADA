@@ -20,25 +20,26 @@ public class RegistroSeccional {
         this.idRegistroSeccional = idRegistroSeccional;
         vehiculos = new LinkedList<>();
     }
+
     private LocalDate cargarFechaAleatoria(Integer opcion){
+
         LocalDate fechaopcional1 = LocalDate.now();
         LocalDate fechaopcional2 = LocalDate.of(2019,06,15);
         LocalDate fechaOpcional3 = LocalDate.of(2020, 9, 6);
         LocalDate fechaOpcional4 = LocalDate.of(2010,4,10);
         LocalDate fechaOpcional5 = LocalDate.of(2003,9,21);
         LocalDate fechaOpcional6 = LocalDate.of(2016,01,15);
+
         Map<Integer,LocalDate> mapaFechasOpcionales = new HashMap<>();
+
         nuevaFechaEnMapa(mapaFechasOpcionales,1,fechaopcional1);
         nuevaFechaEnMapa(mapaFechasOpcionales, 2, fechaopcional2);
         nuevaFechaEnMapa(mapaFechasOpcionales, 3, fechaOpcional3);
         nuevaFechaEnMapa(mapaFechasOpcionales, 4, fechaOpcional4);
         nuevaFechaEnMapa(mapaFechasOpcionales,5,fechaOpcional5);
         nuevaFechaEnMapa(mapaFechasOpcionales,6,fechaOpcional6);
-        return mapaFechasOpcionales.get(opcion);
-    }
 
-    private static void nuevaFechaEnMapa(Map<Integer,LocalDate>mapaFechasOpcionales,Integer nro, LocalDate fecha) {
-        mapaFechasOpcionales.put(nro,fecha);
+        return mapaFechasOpcionales.get(opcion);
     }
 
     //Opcional 2: Se debe registrar la FECHA en la que se da de alta un automotor.
@@ -112,12 +113,15 @@ public class RegistroSeccional {
 
     //Opcional 1: Cada automotor tiene una PATENTE unica que se asigna automáticamente
     // al realizar el alta del registro
+
     private Boolean verificarIngresoPatenteUnica(String patente) {
         return(patentesUnicas.add(patente));
     }
+
     public void darAltaPropietario(Persona propietario) {
         this.propietario = propietario;
     }
+
     public void darAltaAutorizados(List<Persona>autorizados) {
         this.autorizados = autorizados;
     }
@@ -137,5 +141,10 @@ public class RegistroSeccional {
         }else{
             uso = "Profesional";
         }return uso;
+    }
+
+    private static void nuevaFechaEnMapa(Map<Integer,LocalDate>mapaFechasOpcionales,Integer nro, LocalDate fecha) {
+        mapaFechasOpcionales.put(nro,fecha);
+
     }
 }

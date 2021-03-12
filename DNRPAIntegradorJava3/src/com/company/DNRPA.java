@@ -13,12 +13,13 @@ public class DNRPA {
     private List<Vehiculo>todosLosVehiculosDelPais = new LinkedList<>();
     private LocalDate fechaActual = LocalDate.now();
     private Boolean isMenu = true;
-    Scanner scanner = new Scanner(System.in);
-    Integer opcion;
-    RegistroSeccional seccional;
+    private Scanner scanner = new Scanner(System.in);
+    private Integer opcion;
+    private RegistroSeccional seccional;
     private Random aleatorio = new Random();
 
     public void iniciarMenu() {
+
         System.out.println();
         System.out.println("Bienvenido a la");
         System.out.println("DIRECCION NACIONAL DEL REGISTRO DE LA PROPIEDAD DEL AUTOMOTOR");
@@ -40,7 +41,7 @@ public class DNRPA {
             opcion = Integer.parseInt(scanner.nextLine());
 
             switch (opcion){
-                //TODO prueba:
+
                 case 1 :
                     if (todosLosVehiculosDelPais.size() == 0)
                         cargarDatosIniciales();
@@ -48,22 +49,30 @@ public class DNRPA {
                         System.out.println("Ya se han cargado los registros al sistema.");
 
                     break;
+
                 case 2: listarTodosLosVehiculosDelPais();
                 break;
+
                 case 3: listarTodosLosAutos();
                 break;
+
                 case 4: listarTodosLosCamiones();
                 break;
+
                 case 5: cambiarPropietario();
                 break;
+
                 case 6: consultarAntiguedadAltaVehiculo();
                 break;
+
                 case 7: consultarAntiguedadCambioPropietario();
                 break;
+
                 case 0:
                     System.out.println("Gracias utilizar el Sistema DNRPA");
                     isMenu = false;
                 break;
+
                 default:
                     System.out.println("Ingrese una opcion correcta");
             }
@@ -73,6 +82,7 @@ public class DNRPA {
 
     //TODO Borrar: método de prueba
     private void cargarDatosIniciales() {
+
         seccional = crearNuevoRegistroSeccional();
         agregarRegistroSeccional(seccional);
         seccional.darAltaPropietario(new Persona("Seba"));
@@ -303,6 +313,7 @@ public class DNRPA {
             System.out.println("El auto no tiene autorizados asignados");
 
         }
+
         if (auto.fechaCambioPropietario != null) {
             System.out.println("Fecha de transferencia a otro propietario: " + auto.fechaCambioPropietario);
         }
@@ -363,6 +374,7 @@ public class DNRPA {
         System.out.println("Ingrese el nombre del nuevo propietario: ");
         String nombre = scanner.nextLine();
         Persona nuevoPropietario = new Persona(nombre);
+
         System.out.println("Ingrese la patente del vehículo que cambia de propietario:");
         String patente = scanner.nextLine();
 
@@ -383,6 +395,7 @@ public class DNRPA {
                 registro = elVehiculo.getIdRegistroSeccional();
 
                 elVehiculo.fechaCambioPropietario = this.fechaActual;
+
                 //TODO: borrar fechas de prueba
                 //se prueba mostrar != fechas de cambio de propietario
                 //elVehiculo. fechaCambioPropietario = LocalDate.of(2020,05,01);
@@ -398,11 +411,13 @@ public class DNRPA {
 
         }
         System.out.println("-------------------------------------------------------------------------");
+
         if (isCambiado) {
             System.out.println("El propietario del vehiculo con patente: " + patente + " ha sido actualizado");
             System.out.println("Se encuentra en el Registro Seccional Nro.: " + registro);
             System.out.println("El nuevo propietario es: " + nuevoPropietario.getNombre());
             System.out.println("La fecha de cambio es: " + fechaCambio);
+
         } else {
             System.out.println("No se ha encontrado el vehiculo para cambiar el propietario.");
         }
@@ -412,7 +427,7 @@ public class DNRPA {
         if(elVehiculo.patente.length()>6){
             elVehiculo.propietario = nuevoPropietario;
         }else {
-            throw new PatenteDesactualizadaException("El vehículo debe actualizar su patente antes de cambiar de propietario, al formato AA111BBB");
+            throw new PatenteDesactualizadaException("El vehículo debe actualizar su patente antes de cambiar de propietario, al formato XX123YY");
         }
 
     }
@@ -446,6 +461,7 @@ public class DNRPA {
     }
 
     private void consultarAntiguedadAltaVehiculo() {
+
         //TODO Borrar: opcion de carga aleatoria para consulta de antiguedad
         Integer opcion = aleatorio.nextInt(7)+1;
         Vehiculo v = todosLosVehiculosDelPais.get(opcion);
