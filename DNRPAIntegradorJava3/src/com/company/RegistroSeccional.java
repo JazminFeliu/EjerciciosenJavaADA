@@ -13,6 +13,7 @@ public class RegistroSeccional {
     private LocalDate fecha;
     private String patente;
     private HashSet<String> patentesUnicas = new HashSet<>();
+    private Random aleatorio = new Random();
 
 
     public RegistroSeccional(Integer idRegistroSeccional) {
@@ -36,7 +37,7 @@ public class RegistroSeccional {
 
     //Opcional 2: Se debe registrar la FECHA en la que se da de alta un automotor.
     public LocalDate getFechaDeAlta(){
-        Random aleatorio = new Random();
+
         int opcionFechaAleatoria = aleatorio.nextInt(3)+1;
         fecha = cargarFechaAleatoria(opcionFechaAleatoria);
         return fecha;
@@ -61,15 +62,15 @@ public class RegistroSeccional {
         return vehiculos;
     }
 
-    public Integer getIdRegistroSeccional(){
+    public Integer getIdRegistroSeccional() {
         return idRegistroSeccional;
     }
 
-    private String generarPatenteRandom(){
+    private String generarPatenteRandom() {
         String numeros = "";
         String letras = "";
 
-        for(int i = 1; i<=3; i++){
+        for(int i = 1; i <= 3; i++) {
             int n = (int)(Math.random()*9+0);
             numeros = n+numeros;
             int l = (int)(Math.random()*(90-65+1)+65);
@@ -84,10 +85,10 @@ public class RegistroSeccional {
     private Boolean verificarIngresoPatenteUnica(String patente) {
         return(patentesUnicas.add(patente));
     }
-    public void darAltaPropietario(Persona propietario){
+    public void darAltaPropietario(Persona propietario) {
         this.propietario = propietario;
     }
-    public void darAltaAutorizados(List<Persona>autorizados){
+    public void darAltaAutorizados(List<Persona>autorizados) {
         this.autorizados = autorizados;
     }
 
@@ -100,8 +101,8 @@ public class RegistroSeccional {
     }
 
     public String getUso() {
-        Random r = new Random();
-        if (r.nextInt() < 20) {
+
+        if (aleatorio.nextInt() < 20) {
             uso = "Particular";
         }else{
             uso = "Profesional";
