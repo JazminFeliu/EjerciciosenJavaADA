@@ -11,14 +11,14 @@ public class Usuario {
         this.nombre = nombre;
 
         try {
-            asignarLegajo(legajo);
+            setLegajo(legajo);
 
         } catch (LegajoIncorrectoException e){
             e.printStackTrace();
         }
     }
 
-    private void asignarLegajo(String legajo) throws LegajoIncorrectoException {
+    private void setLegajo(String legajo) throws LegajoIncorrectoException {
         legajo = legajo.toUpperCase(Locale.ROOT);
         if((legajo.startsWith("A") || legajo.startsWith("B") ||
         legajo.startsWith("C")) && (legajo.length() == 4)){

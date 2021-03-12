@@ -26,6 +26,5 @@ public class Main {
 	 */
         Usuario usuario = new Usuario("Jimena", "b221");
 
-
     }
 }
