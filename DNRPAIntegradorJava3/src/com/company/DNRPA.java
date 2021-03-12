@@ -21,7 +21,7 @@ public class DNRPA {
     public void iniciarMenu() {
         System.out.println();
         System.out.println("Bienvenido a la");
-        System.out.println("DIRECCION NACIONAL REGISTRO DE LA PROPIEDAD DEL AUTOMOTOR");
+        System.out.println("DIRECCION NACIONAL DEL REGISTRO DE LA PROPIEDAD DEL AUTOMOTOR");
         System.out.println("de la Republica Argentina");
         System.out.println();
 
@@ -372,7 +372,14 @@ public class DNRPA {
 
         for (Vehiculo elVehiculo : todosLosVehiculosDelPais ) {
             if (elVehiculo.patente.equals(patente)) {
-                elVehiculo.propietario = nuevoPropietario;
+                try {
+                    setCambioPropietario(nuevoPropietario, elVehiculo);
+
+                }catch (PatenteDesactualizadaException e){
+                    e.printStackTrace();
+                    break;
+                }
+
                 registro = elVehiculo.getIdRegistroSeccional();
 
                 elVehiculo.fechaCambioPropietario = this.fechaActual;
@@ -388,6 +395,7 @@ public class DNRPA {
                 isCambiado = true;
                 break;
             }
+
         }
         System.out.println("-------------------------------------------------------------------------");
         if (isCambiado) {
@@ -398,6 +406,15 @@ public class DNRPA {
         } else {
             System.out.println("No se ha encontrado el vehiculo para cambiar el propietario.");
         }
+    }
+
+    private void setCambioPropietario(Persona nuevoPropietario, Vehiculo elVehiculo) throws PatenteDesactualizadaException {
+        if(elVehiculo.patente.length()>6){
+            elVehiculo.propietario = nuevoPropietario;
+        }else {
+            throw new PatenteDesactualizadaException("El vehículo debe actualizar su patente antes de cambiar de propietario, al formato AA111BBB");
+        }
+
     }
 
     //Opcional 5:Se puede consultar si pasó un año o mas desde el registro o cambio de titular para un auto y

@@ -24,10 +24,16 @@ public class RegistroSeccional {
         LocalDate fechaopcional1 = LocalDate.now();
         LocalDate fechaopcional2 = LocalDate.of(2019,06,15);
         LocalDate fechaOpcional3 = LocalDate.of(2020, 9, 6);
+        LocalDate fechaOpcional4 = LocalDate.of(2010,4,10);
+        LocalDate fechaOpcional5 = LocalDate.of(2003,9,21);
+        LocalDate fechaOpcional6 = LocalDate.of(2016,01,15);
         Map<Integer,LocalDate> mapaFechasOpcionales = new HashMap<>();
         nuevaFechaEnMapa(mapaFechasOpcionales,1,fechaopcional1);
         nuevaFechaEnMapa(mapaFechasOpcionales, 2, fechaopcional2);
         nuevaFechaEnMapa(mapaFechasOpcionales, 3, fechaOpcional3);
+        nuevaFechaEnMapa(mapaFechasOpcionales, 4, fechaOpcional4);
+        nuevaFechaEnMapa(mapaFechasOpcionales,5,fechaOpcional5);
+        nuevaFechaEnMapa(mapaFechasOpcionales,6,fechaOpcional6);
         return mapaFechasOpcionales.get(opcion);
     }
 
@@ -38,7 +44,7 @@ public class RegistroSeccional {
     //Opcional 2: Se debe registrar la FECHA en la que se da de alta un automotor.
     public LocalDate getFechaDeAlta(){
 
-        int opcionFechaAleatoria = aleatorio.nextInt(3)+1;
+        int opcionFechaAleatoria = aleatorio.nextInt(6)+1;
         fecha = cargarFechaAleatoria(opcionFechaAleatoria);
         return fecha;
     }
@@ -53,10 +59,16 @@ public class RegistroSeccional {
 
     public String getPatente(){
         do {
-            patente = generarPatenteRandom();
+            LocalDate fechaBorde = LocalDate.of(2016,04,01);
+            if (fecha.isAfter(fechaBorde)) {
+                this.patente = generarPatenteRandomNueva();
+            } else {
+                this.patente = generarPatenteRandomVieja();
+            }
         }while (!verificarIngresoPatenteUnica(patente));
         return patente;
     }
+
 
     public List<Vehiculo> getVehiculos() {
         return vehiculos;
@@ -66,7 +78,7 @@ public class RegistroSeccional {
         return idRegistroSeccional;
     }
 
-    private String generarPatenteRandom() {
+    private String generarPatenteRandomVieja() {
         String numeros = "";
         String letras = "";
 
@@ -77,6 +89,24 @@ public class RegistroSeccional {
             letras = (char)l + letras;
         }
         patente = numeros+letras;
+        return patente;
+    }
+
+    private String generarPatenteRandomNueva() {
+        String numeros = "";
+        String letrasInicio = "";
+        String letrasFin ="";
+
+        for(int i = 1; i <= 3; i++) {
+            int n = (int)(Math.random()*9+0);
+            numeros = n+numeros;
+            int l = (int)(Math.random()*(90-65+1)+65);
+            letrasInicio = (char)l + letrasInicio;
+            l = (int)(Math.random()*(90-65+1)+65);
+            letrasFin = (char)l + letrasFin;
+        }
+
+        patente = letrasInicio.substring(0,2)+numeros+letrasFin.substring(0,2);
         return patente;
     }
 
