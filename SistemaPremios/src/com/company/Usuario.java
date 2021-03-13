@@ -1,5 +1,7 @@
 package com.company;
 
+import jdk.jshell.execution.Util;
+
 import java.util.Locale;
 
 public class Usuario {
@@ -8,13 +10,21 @@ public class Usuario {
     private String legajo;
 
     public Usuario(String nombre, String legajo){
-        this.nombre = nombre;
+        setNombre(nombre);
 
         try {
             setLegajo(legajo);
 
         } catch (LegajoIncorrectoException e){
             e.printStackTrace();
+        }
+    }
+
+    private void setNombre(String nombre) {
+        if(Utilitaria.validarString(nombre,20))
+        this.nombre = nombre;
+        else {
+            throw new DatosIncorrectosException("El nombre no es correcto.");
         }
     }
 
@@ -32,5 +42,14 @@ public class Usuario {
 
     public String getLegajo (){
         return this.legajo;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombre='" + nombre + '\'' +
+                ", legajo='" + legajo + '\'' +
+                '}';
     }
 }

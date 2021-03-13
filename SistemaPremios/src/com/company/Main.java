@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -24,7 +26,21 @@ public class Main {
 	{ if(String.valueOf(dni).length()!=8){ throw new DatosIncorrectosException
 	("El DNI debe tener 8 dígitos."); }else{ this.dni = dni; } }
 	 */
-        Usuario usuario = new Usuario("Jimena", "b221");
+        SistemaPremios premios = new SistemaPremios();
+
+        Scanner sc = new Scanner(System.in);
+        int op = 0;
+        System.out.println("Vamos a agregar empleados!");
+
+        do {
+            premios.registrarNuevoUsuario();
+            System.out.println("¿Desea agregar usuario nuevo?: (1= SI, 0 = NO)");
+            op = Utilitaria.getInt();
+        }while (op !=0);
+
+        System.out.println("Lista");
+        premios.listarUsuarios();
+
 
     }
 }
