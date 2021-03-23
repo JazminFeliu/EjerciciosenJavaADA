@@ -7,13 +7,14 @@ public class RegistroSeccional {
 
     private List<Vehiculo> vehiculos;
     private Integer idRegistroSeccional;
-    private String uso;
+    private Uso uso;
     private Persona propietario;
     private List<Persona>autorizados;
     private LocalDate fecha;
     private String patente;
     private HashSet<String> patentesUnicas = new HashSet<>();
     private Random aleatorio = new Random();
+    private Scanner scanner = new Scanner(System.in);
 
 
     public RegistroSeccional(Integer idRegistroSeccional) {
@@ -42,23 +43,65 @@ public class RegistroSeccional {
         return mapaFechasOpcionales.get(opcion);
     }
 
-    //Opcional 2: Se debe registrar la FECHA en la que se da de alta un automotor.
     public LocalDate getFechaDeAlta(){
+        fecha = LocalDate.now();
+        return fecha;
+    }
 
+    //Opcional 2: Se debe registrar la FECHA en la que se da de alta un automotor.
+    public LocalDate getFechaDeAltaAleatoria(){
         int opcionFechaAleatoria = aleatorio.nextInt(6)+1;
         fecha = cargarFechaAleatoria(opcionFechaAleatoria);
         return fecha;
     }
 
-    public void darAltaVehiculo(Vehiculo v ) {
-        this.fecha = getFechaDeAlta();
-        this.patente = getPatente();
-        this.uso = getUso();
+    public void darAltaVehiculoAleatorio(Vehiculo v ) {
+        this.patente = getPatenteAleatoria();
         vehiculos.add(v);
-        //alta nuevo vehiculo
+        //alta nuevo vehiculo aleatorio
+    }
+
+    public void darAltaVehiculo(Vehiculo v){
+        this.patente = getPatente();
+        vehiculos.add(v);
+
+    }
+
+    public Uso getUso() {
+        Boolean isCorrect = true;
+
+        do {
+            System.out.print("Ingrese el uso que dará al vehículo (0: Particular/1:Profesional): ");
+            Integer opcion = Integer.parseInt(scanner.nextLine());
+
+            switch (opcion){
+                case 0:
+                    uso = uso.Particular;
+                    isCorrect = false;
+                    break;
+                case 1:
+                    uso = uso.Profesional;
+                    isCorrect = false;
+                    break;
+                default:
+                    System.out.println("Ingrese una opcion correcta");
+
+            }
+
+        }while (isCorrect);
+
+        return uso;
     }
 
     public String getPatente(){
+        do{
+            this.patente = generarPatenteRandomNueva();
+        }while (!verificarIngresoPatenteUnica(patente));
+
+        return patente;
+    }
+
+    public String getPatenteAleatoria(){
         do {
             LocalDate fechaBorde = LocalDate.of(2016,04,01);
             if (fecha.isAfter(fechaBorde)) {
@@ -79,6 +122,7 @@ public class RegistroSeccional {
         return idRegistroSeccional;
     }
 
+
     private String generarPatenteRandomVieja() {
         String numeros = "";
         String letras = "";
@@ -89,7 +133,7 @@ public class RegistroSeccional {
             int l = (int)(Math.random()*(90-65+1)+65);
             letras = (char)l + letras;
         }
-        patente = numeros+letras;
+        patente = letras+numeros;
         return patente;
     }
 
@@ -134,17 +178,18 @@ public class RegistroSeccional {
         return autorizados;
     }
 
-    public String getUso() {
+    public Uso getUsoAleatorio() {
 
-        if (aleatorio.nextInt() < 20) {
-            uso = "Particular";
-        }else{
-            uso = "Profesional";
-        }return uso;
+        if (aleatorio.nextInt() < 20)
+            uso = uso.Particular;
+        else
+            uso = uso.Profesional;
+        return uso;
     }
 
     private static void nuevaFechaEnMapa(Map<Integer,LocalDate>mapaFechasOpcionales,Integer nro, LocalDate fecha) {
         mapaFechasOpcionales.put(nro,fecha);
 
     }
+
 }
