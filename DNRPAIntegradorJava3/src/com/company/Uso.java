@@ -3,16 +3,19 @@ package com.company;
 public enum Uso {
 
 
-    Particular("El vehículo tiene uso particular."),
+    Particular("El vehículo tiene uso particular, verificar uber out."),
     Profesional("El vehículo permite transporte de pasajeros y/o cargas");
 
     private final String descripcion;
 
-    Uso(String descripcion){
+    Uso(String descripcion) {
         this.descripcion = descripcion;
+
     }
 
-    public String getDescripcion(){
+    public String getDescripcion() {
         return descripcion;
+
     }
+
 }

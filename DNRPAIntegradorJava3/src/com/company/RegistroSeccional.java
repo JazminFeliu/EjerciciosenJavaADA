@@ -16,17 +16,16 @@ public class RegistroSeccional {
     private Random aleatorio = new Random();
     private Scanner scanner = new Scanner(System.in);
 
-
     public RegistroSeccional(Integer idRegistroSeccional) {
         this.idRegistroSeccional = idRegistroSeccional;
         vehiculos = new LinkedList<>();
     }
 
-    private LocalDate cargarFechaAleatoria(Integer opcion){
+    private LocalDate cargarFechaAleatoria(Integer opcion) {
 
         LocalDate fechaopcional1 = LocalDate.now();
         LocalDate fechaopcional2 = LocalDate.of(2019,06,15);
-        LocalDate fechaOpcional3 = LocalDate.of(2020, 9, 6);
+        LocalDate fechaOpcional3 = LocalDate.of(2018, 9, 6);
         LocalDate fechaOpcional4 = LocalDate.of(2010,4,10);
         LocalDate fechaOpcional5 = LocalDate.of(2003,9,21);
         LocalDate fechaOpcional6 = LocalDate.of(2016,01,15);
@@ -43,15 +42,21 @@ public class RegistroSeccional {
         return mapaFechasOpcionales.get(opcion);
     }
 
-    public LocalDate getFechaDeAlta(){
-        fecha = LocalDate.now();
+    public LocalDate getFechaDeCambioPropietario() {
+       if(aleatorio.nextInt(100) > 50) {
+           fecha = LocalDate.of(2020,01,01);
+
+       } else
+           fecha = LocalDate.of(2021,01,01);
+
         return fecha;
     }
 
     //Opcional 2: Se debe registrar la FECHA en la que se da de alta un automotor.
     public LocalDate getFechaDeAltaAleatoria(){
-        int opcionFechaAleatoria = aleatorio.nextInt(6)+1;
+        int opcionFechaAleatoria = aleatorio.nextInt(6) + 1;
         fecha = cargarFechaAleatoria(opcionFechaAleatoria);
+
         return fecha;
     }
 
@@ -64,7 +69,6 @@ public class RegistroSeccional {
     public void darAltaVehiculo(Vehiculo v){
         this.patente = getPatente();
         vehiculos.add(v);
-
     }
 
     public Uso getUso() {
@@ -79,13 +83,14 @@ public class RegistroSeccional {
                     uso = uso.Particular;
                     isCorrect = false;
                     break;
+
                 case 1:
                     uso = uso.Profesional;
                     isCorrect = false;
                     break;
+
                 default:
                     System.out.println("Ingrese una opcion correcta");
-
             }
 
         }while (isCorrect);
@@ -93,23 +98,27 @@ public class RegistroSeccional {
         return uso;
     }
 
-    public String getPatente(){
-        do{
+    public String getPatente() {
+        do {
             this.patente = generarPatenteRandomNueva();
-        }while (!verificarIngresoPatenteUnica(patente));
+
+        } while (!verificarIngresoPatenteUnica(patente));
 
         return patente;
     }
 
-    public String getPatenteAleatoria(){
+    public String getPatenteAleatoria() {
         do {
             LocalDate fechaBorde = LocalDate.of(2016,04,01);
-            if (fecha.isAfter(fechaBorde)) {
+
+            if (fecha.isAfter(fechaBorde))
                 this.patente = generarPatenteRandomNueva();
-            } else {
+
+            else
                 this.patente = generarPatenteRandomVieja();
-            }
-        }while (!verificarIngresoPatenteUnica(patente));
+
+        } while (!verificarIngresoPatenteUnica(patente));
+
         return patente;
     }
 
@@ -160,22 +169,27 @@ public class RegistroSeccional {
 
     private Boolean verificarIngresoPatenteUnica(String patente) {
         return(patentesUnicas.add(patente));
+
     }
 
     public void darAltaPropietario(Persona propietario) {
         this.propietario = propietario;
+
     }
 
     public void darAltaAutorizados(List<Persona>autorizados) {
         this.autorizados = autorizados;
+
     }
 
     public Persona getPropietario() {
         return propietario;
+
     }
 
     public List<Persona> getAutorizados() {
         return autorizados;
+
     }
 
     public Uso getUsoAleatorio() {
@@ -185,11 +199,12 @@ public class RegistroSeccional {
         else
             uso = uso.Profesional;
         return uso;
+
     }
 
     private static void nuevaFechaEnMapa(Map<Integer,LocalDate>mapaFechasOpcionales,Integer nro, LocalDate fecha) {
+
         mapaFechasOpcionales.put(nro,fecha);
 
     }
-
 }

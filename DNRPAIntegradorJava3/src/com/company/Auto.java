@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Auto extends Vehiculo implements IVehiculoACombustion{
 
-    public Auto(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente, Uso uso, Persona propietario, List<Persona> autorizados) {
-        super(idRegistroSeccional, fechaDeAlta, patente, uso, propietario, autorizados);
+    public Auto(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente, Uso uso, Persona propietario, List<Persona> autorizados, LocalDate fechaCambioPropietario) {
+        super(idRegistroSeccional, fechaDeAlta, patente, uso, propietario, autorizados, fechaCambioPropietario);
     }
 
-    public Auto(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente, Uso uso, Persona propietario) {
-        super(idRegistroSeccional, fechaDeAlta, patente, uso, propietario);
+    public Auto(Integer idRegistroSeccional, LocalDate fechaDeAlta, String patente, Uso uso, Persona propietario, LocalDate fechaCambioPropietario) {
+        super(idRegistroSeccional, fechaDeAlta, patente, uso, propietario, fechaCambioPropietario);
     }
 
     @Override

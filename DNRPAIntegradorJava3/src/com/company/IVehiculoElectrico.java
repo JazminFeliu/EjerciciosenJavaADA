@@ -5,5 +5,4 @@ public interface IVehiculoElectrico {
     default void solicitarVoltaje(){
 
     }
-
 }

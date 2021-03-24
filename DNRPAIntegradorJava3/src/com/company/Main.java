@@ -6,7 +6,7 @@ public class Main {
 
         DNRPA RegistroNacional = new DNRPA();
 
-        RegistroNacional.iniciarMenu();
+       RegistroNacional.iniciarMenu();
 
     }
 }

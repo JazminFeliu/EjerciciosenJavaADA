@@ -22,10 +22,9 @@ public class DNRPA {
     public void iniciarMenu() {
 
         System.out.println();
-        System.out.println("Bienvenido a la");
+        System.out.println("\n\n\tBienvenido a la");
         System.out.println("DIRECCION NACIONAL DEL REGISTRO DE LA PROPIEDAD DEL AUTOMOTOR");
-        System.out.println("de la Republica Argentina");
-        System.out.println();
+        System.out.println("de la Republica Argentina\n\n");
 
         do {
             System.out.println();
@@ -41,7 +40,6 @@ public class DNRPA {
             System.out.println("0 - Salir");
             System.out.print("Opcion: ");
 
-
             opcion = Integer.parseInt(scanner.nextLine());
 
             switch (opcion) {
@@ -51,7 +49,6 @@ public class DNRPA {
                         cargarDatosIniciales();
                     else
                         System.out.println("Ya se han cargado los registros al sistema.");
-
                     break;
 
                 case 2:
@@ -89,7 +86,7 @@ public class DNRPA {
 
                 case 8:
                     if (todosLosVehiculosDelPais.size() == 0) {
-                        System.out.println("###### ATENCION!!! ######### ");
+                        System.out.println("######## ATENCION!!! ######### ");
                         System.out.println(" Evite PATENTES duplicadas, cargar los datos de los registros existentes primero (opcion 1)");
                     } else
                         darDeAltaUnVehiculo();
@@ -133,8 +130,9 @@ public class DNRPA {
 
         if (opcion != 0) {
             List<Persona> autorizados = new ArrayList<>();
+
             for (int i = 0; i < opcion; i++) {
-                System.out.print("Ingrese el nombre del autorizado nro. " + (i + 1) + " :");
+                System.out.print("Ingrese el nombre del autorizado nro. " + (i + 1) + " : ");
                 autorizados.add(new Persona(scanner.nextLine()));
             }
 
@@ -144,92 +142,113 @@ public class DNRPA {
             seccional.darAltaAutorizados(null);
         }
 
-        System.out.println("Ingrese el tipo de vehiculo a dar de alta: ");
-        System.out.println("1: auto");
-        System.out.println("2: auto eléctrico");
-        System.out.println(("3: camión"));
-        System.out.println("4: colectivo");
-        System.out.println("5: moto");
-        System.out.println("6: moto eléctrica");
-        System.out.println("7: utilitario");
+        Boolean isAlta = true;
+
+        do{
+            System.out.println("Ingrese el tipo de vehiculo a dar de alta: ");
+            System.out.println("1: auto");
+            System.out.println("2: auto eléctrico");
+            System.out.println(("3: camión"));
+            System.out.println("4: colectivo");
+            System.out.println("5: moto");
+            System.out.println("6: moto eléctrica");
+            System.out.println("7: utilitario");
+
+            opcion = Integer.parseInt(scanner.nextLine());
 
 
-        opcion = Integer.parseInt(scanner.nextLine());
-        switch (opcion) {
-            case 1:
-                unVehiculo = new Auto(
-                        seccional.getIdRegistroSeccional(),
-                        seccional.getFechaDeAlta(),
-                        seccional.getPatente(),
-                        seccional.getUso(),
-                        seccional.getPropietario(),
-                        seccional.getAutorizados());
-                break;
 
-            case 2:
-                unVehiculo = new AutoElectrico(
-                        seccional.getIdRegistroSeccional(),
-                        seccional.getFechaDeAlta(),
-                        seccional.getPatente(),
-                        seccional.getUso(),
-                        seccional.getPropietario(),
-                        seccional.getAutorizados());
-                break;
+            switch (opcion) {
+                case 1:
+                    unVehiculo = new Auto(
+                            seccional.getIdRegistroSeccional(),
+                            LocalDate.now(),
+                            seccional.getPatente(),
+                            seccional.getUso(),
+                            seccional.getPropietario(),
+                            seccional.getAutorizados(),
+                            seccional.getFechaDeCambioPropietario());
+                    isAlta = false;
+                    break;
 
-            case 3:
-                unVehiculo = new Camion(
-                        seccional.getIdRegistroSeccional(),
-                        seccional.getFechaDeAlta(),
-                        seccional.getPatente(),
-                        seccional.getUso(),
-                        seccional.getPropietario(),
-                        seccional.getAutorizados());
-                break;
+                case 2:
+                    unVehiculo = new AutoElectrico(
+                            seccional.getIdRegistroSeccional(),
+                            LocalDate.now(),
+                            seccional.getPatente(),
+                            seccional.getUso(),
+                            seccional.getPropietario(),
+                            seccional.getAutorizados(),
+                            seccional.getFechaDeCambioPropietario());
+                    isAlta = false;
+                    break;
 
-            case 4:
-                unVehiculo = new Colectivo(
-                        seccional.getIdRegistroSeccional(),
-                        seccional.getFechaDeAlta(),
-                        seccional.getPatente(),
-                        seccional.getUso(),
-                        seccional.getPropietario(),
-                        seccional.getAutorizados());
-                break;
+                case 3:
+                    unVehiculo = new Camion(
+                            seccional.getIdRegistroSeccional(),
+                            LocalDate.now(),
+                            seccional.getPatente(),
+                            seccional.getUso(),
+                            seccional.getPropietario(),
+                            seccional.getAutorizados(),
+                            seccional.getFechaDeCambioPropietario());
+                    isAlta = false;
+                    break;
 
-            case 5:
-                unVehiculo = new Moto(
-                        seccional.getIdRegistroSeccional(),
-                        seccional.getFechaDeAlta(),
-                        seccional.getPatente(),
-                        seccional.getUso(),
-                        seccional.getPropietario(),
-                        seccional.getAutorizados());
-                break;
+                case 4:
+                    unVehiculo = new Colectivo(
+                            seccional.getIdRegistroSeccional(),
+                            LocalDate.now(),
+                            seccional.getPatente(),
+                            seccional.getUso(),
+                            seccional.getPropietario(),
+                            seccional.getAutorizados(),
+                            seccional.getFechaDeCambioPropietario());
+                    isAlta = false;
+                    break;
 
-            case 6:
-                unVehiculo = new MotoElectrica(
-                        seccional.getIdRegistroSeccional(),
-                        seccional.getFechaDeAlta(),
-                        seccional.getPatente(),
-                        seccional.getUso(),
-                        seccional.getPropietario(),
-                        seccional.getAutorizados());
-                break;
+                case 5:
+                    unVehiculo = new Moto(
+                            seccional.getIdRegistroSeccional(),
+                            LocalDate.now(),
+                            seccional.getPatente(),
+                            seccional.getUso(),
+                            seccional.getPropietario(),
+                            seccional.getAutorizados(),
+                            seccional.getFechaDeCambioPropietario());
+                    isAlta = false;
+                    break;
 
-            case 7:
-                unVehiculo = new Utilitario(
-                        seccional.getIdRegistroSeccional(),
-                        seccional.getFechaDeAlta(),
-                        seccional.getPatente(),
-                        seccional.getUso(),
-                        seccional.getPropietario(),
-                        seccional.getAutorizados());
-                break;
+                case 6:
+                    unVehiculo = new MotoElectrica(
+                            seccional.getIdRegistroSeccional(),
+                            LocalDate.now(),
+                            seccional.getPatente(),
+                            seccional.getUso(),
+                            seccional.getPropietario(),
+                            seccional.getAutorizados(),
+                            seccional.getFechaDeCambioPropietario());
+                    isAlta = false;
+                    break;
 
-            default:
-                System.out.println("No se ha seleccionado ningun vehiculo");
-                break;
-        }
+                case 7:
+                    unVehiculo = new Utilitario(
+                            seccional.getIdRegistroSeccional(),
+                            LocalDate.now(),
+                            seccional.getPatente(),
+                            seccional.getUso(),
+                            seccional.getPropietario(),
+                            seccional.getAutorizados(),
+                            seccional.getFechaDeCambioPropietario());
+                    isAlta = false;
+                    break;
+
+                default:
+                    System.out.println("Ingrese una opcion correcta");
+                    break;
+            }
+        }while (isAlta);
+
         seccional.darAltaVehiculo(unVehiculo);
         todosLosVehiculosDelPais.add(unVehiculo);
         System.out.println("El vehiculo " + unVehiculo.getClass().getSimpleName() + " se ha dado de alta");
@@ -240,11 +259,11 @@ public class DNRPA {
 
         seccional = crearNuevoRegistroSeccional();
         agregarRegistroSeccional(seccional);
-        seccional.darAltaPropietario(new Persona("Seba"));
+        seccional.darAltaPropietario(new Persona("PACO DE LUCIA"));
         List<Persona> autorizados = new ArrayList<>(Arrays.asList(
-                new Persona("Juan"),
-                new Persona("Jazmin"),
-                new Persona("Lucia")
+                new Persona("TOMATITO"),
+                new Persona("CAMARON DE LA ISLA"),
+                new Persona("EVA YERBABUENA")
         ));
         seccional.darAltaAutorizados(autorizados);
 
@@ -255,13 +274,17 @@ public class DNRPA {
                 seccional.getPatenteAleatoria(),
                 seccional.getUsoAleatorio(),
                 seccional.getPropietario(),
-                seccional.getAutorizados());
+                seccional.getAutorizados(),
+                seccional.getFechaDeCambioPropietario());
+
         seccional.darAltaVehiculoAleatorio(auto1);
 
-        seccional.darAltaPropietario(new Persona("Vivian"));
+        seccional.darAltaPropietario(new Persona("Anakin Skywalker"));
         autorizados = new ArrayList<>(Arrays.asList(
-                new Persona("Nora"),
-                new Persona("Pedro")
+                new Persona("Darth Vader"),
+                new Persona("Padme Amidala"),
+                new Persona("Luke Skywalker"),
+                new Persona("Leia Organa")
         ));
         seccional.darAltaAutorizados(autorizados);
 
@@ -271,17 +294,19 @@ public class DNRPA {
                 seccional.getFechaDeAltaAleatoria(),
                 seccional.getPatenteAleatoria(),
                 seccional.getUsoAleatorio(),
-                seccional.getPropietario());
+                seccional.getPropietario(),
+                seccional.getAutorizados(),
+                seccional.getFechaDeCambioPropietario());
         seccional.darAltaVehiculoAleatorio(auto2);
 
         seccional = crearNuevoRegistroSeccional();
         agregarRegistroSeccional(seccional);
 
-        seccional.darAltaPropietario(new Persona("Wilfredo"));
+        seccional.darAltaPropietario(new Persona("Hans Zimmer"));
         autorizados = new ArrayList<>(Arrays.asList(
-                new Persona("Rosa"),
-                new Persona("Vilma"),
-                new Persona("Roberto")
+                new Persona("John Williams"),
+                new Persona("Henry Mancini"),
+                new Persona("Ennio Morricone")
         ));
         seccional.darAltaAutorizados(autorizados);
 
@@ -292,10 +317,11 @@ public class DNRPA {
                 seccional.getPatenteAleatoria(),
                 seccional.getUsoAleatorio(),
                 seccional.getPropietario(),
-                seccional.getAutorizados());
+                seccional.getAutorizados(),
+                seccional.getFechaDeCambioPropietario());
         seccional.darAltaVehiculoAleatorio(camion1);
 
-        seccional.darAltaPropietario(new Persona("Anastasia"));
+        seccional.darAltaPropietario(new Persona("ADA BYRON"));
 
         Moto moto1;
         moto1 = new Moto(
@@ -303,10 +329,11 @@ public class DNRPA {
                 seccional.getFechaDeAltaAleatoria(),
                 seccional.getPatenteAleatoria(),
                 seccional.getUsoAleatorio(),
-                seccional.getPropietario());
+                seccional.getPropietario(),
+                seccional.getFechaDeCambioPropietario());
         seccional.darAltaVehiculoAleatorio(moto1);
 
-        seccional.darAltaPropietario(new Persona("Tomas"));
+        seccional.darAltaPropietario(new Persona("VIRGINIA WOOLF"));
 
         AutoElectrico autoElectrico1;
         autoElectrico1 = new AutoElectrico(
@@ -315,16 +342,17 @@ public class DNRPA {
                 seccional.getPatenteAleatoria(),
                 seccional.getUsoAleatorio(),
                 seccional.getPropietario(),
-                seccional.getAutorizados());
+                seccional.getAutorizados(),
+                seccional.getFechaDeCambioPropietario());
         seccional.darAltaVehiculoAleatorio(autoElectrico1);
 
         seccional = crearNuevoRegistroSeccional();
         agregarRegistroSeccional(seccional);
 
-        seccional.darAltaPropietario(new Persona("Maria"));
+        seccional.darAltaPropietario(new Persona("Salvador Dali"));
         autorizados = new ArrayList<>(Arrays.asList(
-                new Persona("Tito"),
-                new Persona("Ana")
+                new Persona("Claude Monet"),
+                new Persona("Gustav Klimt")
         ));
         seccional.darAltaAutorizados(autorizados);
 
@@ -334,7 +362,8 @@ public class DNRPA {
                 seccional.getFechaDeAltaAleatoria(),
                 seccional.getPatenteAleatoria(),
                 seccional.getUsoAleatorio(),
-                seccional.getPropietario());
+                seccional.getPropietario(),
+                seccional.getFechaDeCambioPropietario());
         seccional.darAltaVehiculoAleatorio(camion2);
 
         AutoElectrico autoElectrico2;
@@ -344,11 +373,12 @@ public class DNRPA {
                 seccional.getPatenteAleatoria(),
                 seccional.getUsoAleatorio(),
                 seccional.getPropietario(),
-                seccional.getAutorizados());
+                seccional.getAutorizados(),
+                seccional.getFechaDeCambioPropietario());
 
         seccional.darAltaVehiculoAleatorio(autoElectrico2);
 
-        seccional.darAltaPropietario(new Persona("Silvio"));
+        seccional.darAltaPropietario(new Persona("Silvio Rodriguez"));
 
         Utilitario utilitario;
         utilitario = new Utilitario(
@@ -356,7 +386,8 @@ public class DNRPA {
                 seccional.getFechaDeAltaAleatoria(),
                 seccional.getPatenteAleatoria(),
                 seccional.getUsoAleatorio(),
-                seccional.getPropietario());
+                seccional.getPropietario(),
+                seccional.getFechaDeCambioPropietario());
         seccional.darAltaVehiculoAleatorio(utilitario);
 
         armarListaVehiculosdeTodosLosRegistros();
@@ -436,12 +467,14 @@ public class DNRPA {
                 System.out.println("Registro Secccional Nro. : "+elVehiculo.idRegistroSeccional);
                 Auto auto = (Auto) elVehiculo;
                 listarVehiculo(auto);
+                System.out.println();
                 contador++;
 
             } else if (elVehiculo instanceof AutoElectrico) {
                 System.out.println("Registro Secccional Nro. : "+elVehiculo.idRegistroSeccional);
                 AutoElectrico auto = (AutoElectrico) elVehiculo;
                 listarVehiculo(auto);
+                System.out.println();
                 contador++;
             }
         }
@@ -456,31 +489,40 @@ public class DNRPA {
         System.out.println();
         System.out.println("Patente: " + v.patente);
 
-
         System.out.println("Tipo: " + v.getClass().getSimpleName());
+
+        if(v instanceof IVehiculoACombustion){
+            ((IVehiculoACombustion) v).solicitarPotencia();
+        }else{
+            ((IVehiculoElectrico) v).solicitarVoltaje();
+        }
+
         System.out.println("Uso: " + v.uso);
         System.out.println(v.uso.getDescripcion());
 
         System.out.println("Propietario: " + v.propietario.getNombre());
+
         System.out.println("Fecha de alta en el Registro: " + v.fechaDeAlta);
+        System.out.println("Fecha de cambio de propietario: "+v.fechaCambioPropietario);
+
         listarAutorizados(v);
-        System.out.println();
 
-        if (v.fechaCambioPropietario != null) {
+        if (v.fechaCambioPropietario != null)
             System.out.println("Fecha de transferencia a otro propietario: " + v.fechaCambioPropietario);
-        }
-
+        else
+            System.out.println("El vehículo no registra transferencias de propietarios.");
     }
 
     private void listarAutorizados(Vehiculo v) {
         if (v.autorizados != null) {
+
             System.out.print("Autorizados a manejar el vehículo: ");
 
             for (Persona p : v.autorizados) {
                 System.out.print("/ " + p.getNombre());
             }
-
             System.out.println();
+
         } else {
             System.out.println("El vehiculo no tiene autorizados asignados");
         }
@@ -488,7 +530,6 @@ public class DNRPA {
 
 
     private void listarTodosLosCamiones() {
-
         for (Vehiculo elVehiculo : todosLosVehiculosDelPais) {
 
             if (elVehiculo instanceof Camion) {
@@ -498,21 +539,23 @@ public class DNRPA {
 
         System.out.println();
         System.out.println("Listado de PROPIETARIOS de CAMIONES de todos los Registros Seccionales:");
+
         Collections.sort(todosLosCamiones, (o1, o2) -> o1.propietario.getNombre().compareTo(o2.propietario.getNombre()));
 
         for (Vehiculo camion : todosLosCamiones) {
-
             listarVehiculo(camion);
-
         }
+
         System.out.println();
         System.out.println("Cantidad de camiones: " + todosLosCamiones.size());
         System.out.println("-------------------------------------------------------------------------");
+
         todosLosCamiones.clear();
     }
 
     //Opcional 3: Los automotores pueden cambiar de propietario.
     //Opcional 4: Se debe registrar la fecha de cambio de propietario.
+
 
     private void cambiarPropietario() {
 
@@ -520,21 +563,19 @@ public class DNRPA {
         Integer registro = 0;
         LocalDate fechaCambio = null;
 
-
-        System.out.println("Ingrese el nombre del nuevo propietario: ");
+        System.out.print("Ingrese el nombre del nuevo propietario: ");
         String nombre = scanner.nextLine();
         Persona nuevoPropietario = new Persona(nombre);
 
-        System.out.println("Ingrese la patente del vehículo que cambia de propietario:");
+        System.out.print("Ingrese la patente del vehículo que cambia de propietario: ");
         String patente = scanner.nextLine();
-
 
         for (Vehiculo elVehiculo : todosLosVehiculosDelPais) {
             if (elVehiculo.patente.equals(patente)) {
                 try {
                     setCambioPropietario(nuevoPropietario, elVehiculo);
 
-                } catch (PatenteDesactualizadaException e) {
+                } catch (PatenteDesactualizadaException | AntiguedadPropietarioException e) {
                     e.printStackTrace();
                     break;
                 }
@@ -548,15 +589,14 @@ public class DNRPA {
                 //elVehiculo. fechaCambioPropietario = LocalDate.of(2020,05,01);
                 //elVehiculo.fechaCambioPropietario = LocalDate.of(2019,05,01);
 
-                fechaCambio = elVehiculo.fechaCambioPropietario;
-
                 elVehiculo.autorizados = null;
+                fechaCambio = this.fechaActual;
 
                 isCambiado = true;
                 break;
             }
-
         }
+
         System.out.println("-------------------------------------------------------------------------");
 
         if (isCambiado) {
@@ -566,47 +606,38 @@ public class DNRPA {
             System.out.println("La fecha de cambio es: " + fechaCambio);
 
         } else {
-            System.out.println("No se ha encontrado el vehiculo para cambiar el propietario.");
+            System.out.println("El cambio no se pudo realizar.");
         }
     }
 
-    private void setCambioPropietario(Persona nuevoPropietario, Vehiculo elVehiculo) throws PatenteDesactualizadaException {
-        if (elVehiculo.patente.length() > 6) {
-            elVehiculo.propietario = nuevoPropietario;
-        } else {
-            throw new PatenteDesactualizadaException("El vehículo debe actualizar su patente antes de cambiar de propietario, al formato XX123YY");
-        }
+    private void setCambioPropietario(Persona nuevoPropietario, Vehiculo elVehiculo) throws PatenteDesactualizadaException, AntiguedadPropietarioException  {
 
+        if (elVehiculo.patente.length() > 6) {
+            Long dias = consultarDiasDesdeCambioDePropietarioDelVehiculo(elVehiculo);
+
+            if (dias > 360) {
+                elVehiculo.propietario = nuevoPropietario;
+
+            } else {
+                throw new AntiguedadPropietarioException("Cambio rechazado. La fecha de último cambio de propietario debe ser mayor a un año.");
+            }
+        } else {
+            throw new PatenteDesactualizadaException("Cambio rechazado. Debe dar de alta el vehículo, con patente de formato actual (XX666ZZ)");
+        }
     }
 
     //Opcional 5:Se puede consultar si pasó un año o mas desde el registro o cambio de titular para un auto y
     //la consulta se realiza por patente.
 
-    private Long consultarDiasDesdeElAltaDelVehiculo(Vehiculo v) {
+    private Long consultarDiasDesdeElAltaDelVehiculo(Vehiculo elVehiculo) {
 
-        Long diasDesdeAlta = null;
-
-        for (Vehiculo elVehiculo : todosLosVehiculosDelPais) {
-
-            if (elVehiculo.patente == v.patente)
-                diasDesdeAlta = DAYS.between(elVehiculo.fechaDeAlta, fechaActual);
-
-        }
-        return diasDesdeAlta;
+        return DAYS.between(elVehiculo.fechaDeAlta, fechaActual);
     }
 
-    private Long consultarDiasDesdeCambioDePropietarioDelVehiculo(Vehiculo v) {
 
-        Long diasDesdeCambio = null;
+    private Long consultarDiasDesdeCambioDePropietarioDelVehiculo(Vehiculo elVehiculo) {
 
-        for (Vehiculo elVehiculo : todosLosVehiculosDelPais) {
-
-            if ((elVehiculo.patente == v.patente) && (elVehiculo.fechaCambioPropietario != null))
-                diasDesdeCambio = DAYS.between(elVehiculo.fechaCambioPropietario, fechaActual);
-
-            break;
-        }
-        return diasDesdeCambio;
+        return DAYS.between(elVehiculo.fechaCambioPropietario, fechaActual);
     }
 
     private void consultarAntiguedadAltaVehiculo() {
@@ -615,30 +646,30 @@ public class DNRPA {
         Integer opcion = aleatorio.nextInt(7)+1;
         Vehiculo v = todosLosVehiculosDelPais.get(opcion);*/
 
-        System.out.println("Ingrese la patente del vehículo que consulta antigüedad de ALTA DEL VEHICULO:");
+        System.out.print("Ingrese la patente del vehículo que consulta antigüedad de ALTA DEL VEHICULO: ");
         String patente = scanner.nextLine();
 
         for (Vehiculo elVehiculo : todosLosVehiculosDelPais) {
             if (elVehiculo.patente.equals(patente)) {
                 listarVehiculo(elVehiculo);
-            }
+                Long diasDesdeAlta = consultarDiasDesdeElAltaDelVehiculo(elVehiculo);
 
-            Long diasDesdeAlta = consultarDiasDesdeElAltaDelVehiculo(elVehiculo);
+                System.out.println("-------------------------------------------------------------------------");
 
-            System.out.println("-------------------------------------------------------------------------");
-
-            if (diasDesdeAlta == null) {
-                System.out.println("El vehículo con patente " + elVehiculo.patente + " fue dado de alta hoy");
-
-            } else {
-                System.out.println("Patente Nro.: " + elVehiculo.patente);
-
-                if (diasDesdeAlta > 360) {
-                    System.out.println("Hace " + diasDesdeAlta + " dias se dio de alta y ya pasó el año.");
+                if (diasDesdeAlta == null) {
+                    System.out.println("El vehículo con patente " + elVehiculo.patente + " fue dado de alta hoy");
 
                 } else {
-                    System.out.println("Hace " + diasDesdeAlta + " dias se dio de alta y todavia no pasó el año.");
+                    System.out.println("Patente Nro.: " + elVehiculo.patente);
+
+                    if (diasDesdeAlta > 360) {
+                        System.out.println("Hace " + diasDesdeAlta + " dias se dio de alta y ya pasó el año.");
+
+                    } else {
+                        System.out.println("Hace " + diasDesdeAlta + " dias se dio de alta y todavia no pasó el año.");
+                    }
                 }
+                break;
             }
         }
     }
@@ -651,33 +682,33 @@ public class DNRPA {
         Vehiculo v = todosLosVehiculosDelPais.get(opcion);
         listarAuto(v);*/
 
-        System.out.println("Ingrese la patente del vehículo que consulta antiguedad de CAMBIO DE PROPIETARIO:");
+        System.out.print("Ingrese la patente del vehículo que consulta antiguedad de CAMBIO DE PROPIETARIO: ");
         String patente = scanner.nextLine();
 
         for (Vehiculo elVehiculo : todosLosVehiculosDelPais) {
             if (elVehiculo.patente.equals(patente)) {
                 listarVehiculo(elVehiculo);
-            }
+                Long diasDesdeCambio = consultarDiasDesdeCambioDePropietarioDelVehiculo(elVehiculo);
 
-            Long diasDesdeCambio = consultarDiasDesdeCambioDePropietarioDelVehiculo(elVehiculo);
+                System.out.println("-------------------------------------------------------------------------");
 
-            System.out.println("-------------------------------------------------------------------------");
+                System.out.println("Patente Nro.: " + elVehiculo.patente);
 
-            System.out.println("Patente Nro.: " + elVehiculo.patente);
+                if (elVehiculo.fechaCambioPropietario == null) {
+                    System.out.println("El vehiculo no cambio de propietario nunca.");
 
-            if (elVehiculo.fechaCambioPropietario == null) {
-                System.out.println("El vehiculo no cambio de propietario nunca.");
-
-            } else if (diasDesdeCambio == null) {
-                System.out.println("El vehículo con patente " + elVehiculo.patente + " cambio hoy de propietario");
-
-            } else {
-                if (diasDesdeCambio > 360) {
-                    System.out.println("Hace " + diasDesdeCambio + " días cambió de propietario, ya pasó el año.");
+                } else if (diasDesdeCambio == 0) {
+                    System.out.println("El vehículo con patente " + elVehiculo.patente + " cambio hoy de propietario");
 
                 } else {
-                    System.out.println("Hace " + diasDesdeCambio + " dias cambio de propietario y todavia no pasó el año.");
+                    if (diasDesdeCambio > 360) {
+                        System.out.println("Hace " + diasDesdeCambio + " días cambió de propietario, ya pasó el año.");
+
+                    } else {
+                        System.out.println("Hace " + diasDesdeCambio + " dias cambio de propietario y todavia no pasó el año.");
+                    }
                 }
+                break;
             }
         }
     }
