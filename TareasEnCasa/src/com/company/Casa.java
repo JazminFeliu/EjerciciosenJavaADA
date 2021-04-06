@@ -83,7 +83,6 @@ public class Casa {
 
     }
 
-
     private void listarPendientesPorResponable(String responsable) {
 
         buscarYMostrarEnDB("SELECT * FROM tareas WHERE estado = 'PENDIENTE' AND responsable = '"+ responsable+"'");
