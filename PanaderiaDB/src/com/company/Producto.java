@@ -1,10 +1,5 @@
 package com.company;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Producto {
 
@@ -23,6 +18,10 @@ public class Producto {
     public Producto(String nombre, int precio){
         this.nombre = nombre;
         this.precio = precio;
+    }
+
+    public Producto(){
+
     }
 
     public Integer getIdProducto() {
@@ -45,6 +44,13 @@ public class Producto {
         return this.precio;
     }
 
+    public void setIdProducto(Integer idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
 
     public void setPrecio(Integer precio){
         this.precio = precio;

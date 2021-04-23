@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Panaderia {
 
     public static void main(String[] args) {
+
 	/*
 	Crear un sistema de facturación de una panaderia.
 	Se tiene una lista de productos con nombre, descripción y precio.
@@ -16,8 +17,8 @@ public class Panaderia {
 	En la caja se atienden los clientes de a uno y se les cobra el total.
 	Si abonan más de lo que se debe cobrar, se informa el vuelto.
 	 */
-        System.out.println("Bienvenidos a la Panaderia ONLINE!");
 
+        System.out.println("Bienvenidos a la Panaderia ONLINE!");
         List<Producto> productos = ProductoDAO.getProductos();
         for(Producto producto: productos)
             System.out.println(producto);
@@ -67,6 +68,7 @@ public class Panaderia {
             if(vuelto>0) System.out.println("Vuelto: $"+vuelto);
             System.out.println("Listo!");
         }
+
     }
 
 }
