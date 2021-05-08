@@ -7,5 +7,16 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/hibernate" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/hibernate" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="mysql:mysql-connector-java:8.0.23" level="application" />
   </component>
 </module>

@@ -1,4 +1,4 @@
-package com.company;
+package com.company.entidades;
 
 public interface Item {
 

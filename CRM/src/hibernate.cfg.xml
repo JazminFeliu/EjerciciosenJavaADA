@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+        <!DOCTYPE hibernate-configuration PUBLIC
+                "-//Hibernate/Hibernate Configuration DTD//EN"
+                "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost/empresaCRM</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
+        <property name="show_sql">true</property>
+        <mapping class="com.company.entidades.Cliente" />
+        <mapping class="com.company.entidades.Producto" />
+        <mapping class="com.company.entidades.Servicio" />
+        <mapping class="com.company.entidades.Empresa" />
+        <mapping class="com.company.entidades.Vendedor" />
+        <mapping class="com.company.entidades.Oportunidad" />
+
+    </session-factory>
+</hibernate-configuration>
